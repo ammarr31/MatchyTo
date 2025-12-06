@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MatchyTo - Find common free time with friends across different timezones">
+    <title>MatchyTo - Find Time Together</title>
+    <link rel="icon" type="image/png" href="applogo.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1A1A1A;
+            background: #F5F5F5;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #008B99 0%, #00A8BA 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .logo {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        h1 {
+            font-size: 48px;
+            font-weight: 900;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .tagline {
+            font-size: 20px;
+            opacity: 0.95;
+            font-weight: 500;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 139, 153, 0.15);
+        }
+
+        .feature-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .feature-card h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+            color: #008B99;
+        }
+
+        .feature-card p {
+            color: #666666;
+            line-height: 1.7;
+        }
+
+        .cta-section {
+            text-align: center;
+            padding: 60px 20px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+            margin-bottom: 40px;
+        }
+
+        .cta-section h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: #1A1A1A;
+        }
+
+        .app-badges {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #008B99;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+
+        .badge:hover {
+            background: #006B77;
+        }
+
+        .footer {
+            background: #1A1A1A;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 36px;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">
+            <img src="applogo.png" alt="MatchyTo Logo">
+        </div>
+        <h1>MatchyTo</h1>
+        <p class="tagline">Find time together, no matter where you are</p>
+    </div>
+
+    <div class="container">
+        <div class="features">
+            <div class="feature-card">
+                <div class="feature-icon">🌍</div>
+                <h3>Timezone Smart</h3>
+                <p>Automatically syncs availability across different timezones. Perfect for international teams and friendships.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📆</div>
+                <h3>Smart Scheduling</h3>
+                <p>Add your free time slots and let MatchyTo find overlapping availability with your friends automatically.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">👥</div>
+                <h3>Group Matching</h3>
+                <p>Find common time for multiple people at once. Perfect for team meetings, study groups, or hangouts.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🔔</div>
+                <h3>Smart Reminders</h3>
+                <p>Never miss a meeting with intelligent notifications that remind you before your scheduled matches.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🔄</div>
+                <h3>Recurring Availability</h3>
+                <p>Set your regular free time once and it repeats automatically every week. Update anytime you need.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Instant Matching</h3>
+                <p>Get real-time suggestions for overlapping free time. Accept or reject match requests with one tap.</p>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <h2>Ready to find time together?</h2>
+            <p style="font-size: 18px; color: #666666; margin-bottom: 10px;">
+                Download MatchyTo and start connecting with friends across the globe
+            </p>
+            <div class="app-badges">
+                <a href="#" class="badge">📱 Download on App Store</a>
+                <a href="#" class="badge">🤖 Get it on Google Play</a>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="privacy-policy.html">Privacy Policy</a>
+            <a href="terms-of-service.html">Terms of Service</a>
+            <a href="support.html">Support</a>
+            <a href="mailto:support@matchyto.com">Contact Us</a>
+        </div>
+        <p>&copy; 2024 MatchyTo. All rights reserved.</p>
+    </footer>
+</body>
+</html>
