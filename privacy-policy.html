@@ -137,7 +137,7 @@
             <img src="applogo.png" alt="MatchyTo Logo">
         </div>
         <h1>Privacy Policy</h1>
-        <p class="last-updated">Last Updated: December 6, 2024</p>
+        <p class="last-updated">Last Updated: December 23, 2024</p>
     </div>
 
     <div class="container">
@@ -155,31 +155,45 @@
         <ul>
             <li>Email address</li>
             <li>Username</li>
-            <li>Password (encrypted)</li>
-            <li>Profile picture (optional)</li>
-            <li>Country and timezone</li>
+            <li>Password (encrypted and hashed)</li>
+            <li>Profile picture (optional, stored securely) - Profile pictures are only accessed when you explicitly select and upload an image. We do not access any other photos or images from your device.</li>
+            <li>Country and timezone (for accurate scheduling)</li>
+            <li>Language preference (English, German, Arabic)</li>
+            <li>Device platform (iOS, Android) for analytics and optimization</li>
+            <li>Authentication provider (email, Google, Apple)</li>
         </ul>
 
         <h3>1.2 Calendar & Availability Data</h3>
         <p>To provide scheduling services, we collect:</p>
         <ul>
-            <li>Your available time slots</li>
-            <li>Match requests and acceptances</li>
+            <li>Your available time slots and free time periods</li>
+            <li>Recurring availability patterns (if enabled)</li>
+            <li>Match invitations (personal and group matches)</li>
+            <li>Match acceptances, rejections, and status</li>
             <li>Custom availability messages (if set)</li>
+            <li>Match duration preferences (15, 30, 45, 60 minutes)</li>
+            <li>Overlapping time slots with friends (only when matches are accepted)</li>
         </ul>
 
         <h3>1.3 Social Information</h3>
         <ul>
-            <li>Friend connections and requests</li>
-            <li>Match history with other users</li>
+            <li>Friend connections and friend requests (pending, accepted, rejected)</li>
+            <li>Match history with other users (personal and group matches)</li>
+            <li>In-app messaging and chat conversations within match threads</li>
+            <li>Message content, timestamps, and sender information</li>
+            <li>Typing indicators (temporary, not stored)</li>
             <li>In-app notifications and communications</li>
+            <li>Profile privacy settings (who can see your profile picture)</li>
         </ul>
 
         <h3>1.4 Usage Data</h3>
         <ul>
             <li>App usage patterns and features used</li>
-            <li>Device information (OS version, app version)</li>
+            <li>Device information (OS version, app version, device model)</li>
+            <li>Platform information (iOS or Android)</li>
+            <li>Last active timestamp (for account activity tracking)</li>
             <li>Crash reports and error logs</li>
+            <li>App performance metrics</li>
         </ul>
 
         <h3>1.5 Authentication Data</h3>
@@ -188,17 +202,60 @@
             <li>We receive your name and email address</li>
             <li>We do NOT access your Google Calendar or Apple Calendar</li>
             <li>We do NOT access any other data from these accounts</li>
+            <li>OAuth tokens are managed securely and only used for authentication</li>
+        </ul>
+
+        <h3>1.6 Push Notification Data</h3>
+        <p>Push notifications are used exclusively for service-related communications:</p>
+        <ul>
+            <li>Firebase Cloud Messaging (FCM) token for push notifications</li>
+            <li>Notification preferences and settings</li>
+            <li>Notification delivery status</li>
+        </ul>
+        <p><strong>Purpose of Push Notifications:</strong> We send push notifications to inform you about:
+            <ul>
+                <li>New friend requests and friend request acceptances</li>
+                <li>Match invitations from friends</li>
+                <li>Match acceptances, rejections, and expiring matches</li>
+                <li>New messages in match threads</li>
+                <li>Important account updates and service notifications</li>
+            </ul>
+            We do not send marketing or promotional notifications. You can disable push notifications at any time through your device settings.
+        </p>
+
+        <h3>1.7 Premium Subscription Data</h3>
+        <p><strong>Note:</strong> Premium subscriptions are currently only available on iOS devices. Android users do not have access to premium subscriptions at this time.</p>
+        <p>For iOS users with premium subscriptions, we collect:</p>
+        <ul>
+            <li>Premium subscription status and type</li>
+            <li>Subscription expiration date (if applicable)</li>
+            <li>Purchase verification data (processed securely through Apple)</li>
+            <li>Premium activation timestamp</li>
+        </ul>
+
+        <h3>1.8 Location Data (Optional)</h3>
+        <p>Location sharing is optional and disabled by default:</p>
+        <ul>
+            <li>If enabled, we may collect approximate location data</li>
+            <li>Location data is only used for location-based features (if implemented)</li>
+            <li>You can disable location sharing at any time in settings</li>
         </ul>
 
         <h2>2. How We Use Your Information</h2>
         <p>We use your information to:</p>
         <ul>
-            <li><strong>Provide Core Services:</strong> Match your availability with friends, send notifications, and enable scheduling</li>
-            <li><strong>Improve User Experience:</strong> Personalize your experience and optimize app performance</li>
-            <li><strong>Account Management:</strong> Authenticate your identity and manage your account settings</li>
-            <li><strong>Communication:</strong> Send important updates, match notifications, and support responses</li>
+            <li><strong>Provide Core Services:</strong> Match your availability with friends, send notifications, enable scheduling, and facilitate in-app messaging</li>
+            <li><strong>Friend Connections:</strong> Manage friend requests, friend lists, and social connections</li>
+            <li><strong>Match Management:</strong> Create, manage, and track personal and group matches</li>
+            <li><strong>Messaging:</strong> Enable real-time chat conversations within match threads</li>
+            <li><strong>Push Notifications:</strong> Send you service-related notifications about matches, friend requests, messages, and important account updates. We do not send marketing or promotional notifications.</li>
+            <li><strong>Premium Features:</strong> Manage and verify premium subscriptions (iOS only). Premium subscriptions are currently only available on iOS devices.</li>
+            <li><strong>Improve User Experience:</strong> Personalize your experience, optimize app performance, and understand platform-specific usage</li>
+            <li><strong>Account Management:</strong> Authenticate your identity, manage account settings, and handle password resets</li>
+            <li><strong>Communication:</strong> Send important updates, match notifications, message notifications, and support responses</li>
             <li><strong>Security:</strong> Detect and prevent fraud, abuse, and security issues</li>
-            <li><strong>Analytics:</strong> Understand how users interact with our app to improve features</li>
+            <li><strong>Analytics:</strong> Understand how users interact with our app, track platform distribution (iOS/Android), and improve features</li>
+            <li><strong>Advertising:</strong> Display relevant advertisements to free users (Android users see ads regardless of premium status)</li>
         </ul>
 
         <h2>3. Information Sharing</h2>
@@ -206,68 +263,117 @@
         <h3>3.1 With Other Users</h3>
         <p>We share limited information with your friends on MatchyTo:</p>
         <ul>
-            <li>Your username and profile picture</li>
+            <li>Your username and profile picture (subject to your privacy settings)</li>
             <li>Your country (for timezone awareness)</li>
             <li>Overlapping availability times (only when you accept a match)</li>
             <li>Custom availability messages (if you set them)</li>
+            <li>Messages you send in match threads (visible to all participants in that match)</li>
+            <li>Your online/typing status (temporary, not stored)</li>
+            <li>Match participation status (whether you've accepted or rejected a match)</li>
         </ul>
 
         <h3>3.2 With Third Parties</h3>
         <p>We do NOT sell your personal information. We only share data with:</p>
         <ul>
-            <li><strong>Firebase (Google):</strong> For authentication, database, and cloud storage services</li>
-            <li><strong>Google AdMob:</strong> For displaying ads (free users only). AdMob may collect device identifiers for ad targeting</li>
-            <li><strong>App Stores:</strong> Apple App Store and Google Play for app distribution and in-app purchases</li>
+            <li><strong>Firebase (Google):</strong> For authentication, database, cloud storage, and push notification services. Firebase processes your data according to Google's Privacy Policy.</li>
+            <li><strong>Google AdMob:</strong> For displaying advertisements. AdMob may collect device identifiers, IP addresses, and usage data for ad targeting and measurement. This applies to:
+                <ul>
+                    <li>Free users on iOS (premium users do not see ads)</li>
+                    <li>All Android users (ads are shown regardless of premium status)</li>
+                </ul>
+                AdMob's data collection is governed by Google's Privacy Policy and AdMob's policies.
+            </li>
+            <li><strong>Google Sign-In:</strong> For authentication when you choose to sign in with Google</li>
+            <li><strong>Apple Sign-In:</strong> For authentication when you choose to sign in with Apple</li>
+            <li><strong>TikTok SDK (ByteDance):</strong> We use TikTok Business SDK for analytics and advertising measurement. TikTok SDK may collect device identifiers, IP addresses, and app usage data for analytics and advertising purposes. This data collection is governed by ByteDance's Privacy Policy. TikTok SDK is used to help us understand app performance and optimize our advertising campaigns.</li>
+            <li><strong>App Stores:</strong> Apple App Store (for iOS) and Google Play Store (for Android) for app distribution and in-app purchases. Premium subscriptions on iOS are processed through Apple's payment system. <strong>Note:</strong> Premium subscriptions are currently only available on iOS devices.</li>
         </ul>
+        
+        <p><strong>AdMob Data Collection:</strong> When ads are displayed, AdMob may automatically collect:</p>
+        <ul>
+            <li>Device identifiers (Android Advertising ID, iOS Identifier for Advertisers)</li>
+            <li>IP addresses</li>
+            <li>Device information (model, OS version)</li>
+            <li>App usage data related to ad interactions</li>
+        </ul>
+        <p>This data is used for ad personalization, measurement, and fraud prevention. You can opt out of personalized ads through your device settings (iOS: Settings → Privacy → Apple Advertising → Personalized Ads; Android: Settings → Google → Ads → Opt out of Ads Personalization).</p>
 
         <h3>3.3 Legal Requirements</h3>
         <p>We may disclose information if required by law, court order, or to protect the rights, property, or safety of MatchyTo, our users, or others.</p>
 
         <h2>4. Data Storage & Security</h2>
         <ul>
-            <li><strong>Encryption:</strong> All data is encrypted in transit using HTTPS/TLS</li>
-            <li><strong>Cloud Storage:</strong> Data is stored securely on Google Firebase servers</li>
-            <li><strong>Password Security:</strong> Passwords are hashed and never stored in plain text</li>
-            <li><strong>Access Control:</strong> Strict internal access controls to your data</li>
+            <li><strong>Encryption:</strong> All data is encrypted in transit using HTTPS/TLS. Sensitive data is also encrypted at rest.</li>
+            <li><strong>Cloud Storage:</strong> Data is stored securely on Google Firebase servers, which comply with industry-standard security practices</li>
+            <li><strong>Password Security:</strong> Passwords are hashed using bcrypt and never stored in plain text. OAuth tokens are stored securely.</li>
+            <li><strong>Access Control:</strong> Strict internal access controls to your data. Only authorized personnel can access user data, and only for support purposes.</li>
+            <li><strong>Message Security:</strong> Messages are stored securely and only accessible to participants in the match thread</li>
+            <li><strong>Profile Picture Security:</strong> Profile pictures are stored securely in Firebase Storage with appropriate access controls. Profile pictures are only accessed when you explicitly select and upload an image through the app. We do not access any other photos or images from your device without your explicit permission.</li>
+            <li><strong>Regular Security Audits:</strong> We regularly review and update our security practices</li>
         </ul>
 
-        <h2>5. Your Rights & Choices</h2>
+        <h2>5. Cookies & Tracking Technologies</h2>
+        <p>MatchyTo uses the following technologies:</p>
+        <ul>
+            <li><strong>Firebase Analytics:</strong> We use Firebase Analytics to understand app usage and improve our services. This may include collecting device identifiers and usage patterns.</li>
+            <li><strong>AdMob SDK:</strong> When ads are displayed, AdMob uses device identifiers and tracking technologies for ad delivery and measurement. This is standard practice for mobile advertising.</li>
+            <li><strong>TikTok Business SDK:</strong> We use TikTok Business SDK for analytics and advertising measurement. TikTok SDK may collect device identifiers, IP addresses, and app usage data. This data is used for analytics, advertising optimization, and performance measurement.</li>
+            <li><strong>Local Storage:</strong> We use local device storage to cache app data and improve performance. This data stays on your device.</li>
+            <li><strong>Push Notification Tokens:</strong> We store FCM tokens to deliver push notifications. You can disable push notifications in your device settings.</li>
+        </ul>
+        <p>You can control some of these through your device settings, but disabling them may affect app functionality.</p>
+
+        <h2>6. Your Rights & Choices</h2>
         
-        <h3>5.1 Access & Update</h3>
+        <h3>6.1 Access & Update</h3>
         <p>You can access and update your account information anytime in the app's Profile section.</p>
 
-        <h3>5.2 Delete Your Account</h3>
+        <h3>6.2 Delete Your Account</h3>
         <p>You can permanently delete your account from Settings > Delete Account. This will:</p>
         <ul>
             <li>Remove all your personal information</li>
             <li>Delete your profile picture from our servers</li>
-            <li>Cancel all pending matches</li>
+            <li>Cancel all pending matches and friend requests</li>
             <li>Remove you from friend lists</li>
+            <li>Delete all your messages in match threads</li>
+            <li>Remove your availability data</li>
+            <li>Cancel any active premium subscriptions (iOS only)</li>
+            <li>Delete your FCM token and disable push notifications</li>
         </ul>
+        <p><strong>Note:</strong> Some information may remain in backups for up to 90 days, but will be permanently deleted after that period.</p>
 
-        <h3>5.3 Opt Out of Ads</h3>
-        <p>Upgrade to MatchyTo Premium to remove all advertisements.</p>
+        <h3>6.3 Opt Out of Ads</h3>
+        <p>Advertisement display varies by platform:</p>
+        <ul>
+            <li><strong>iOS:</strong> Upgrade to MatchyTo Premium to remove all advertisements. Free users will see ads. <strong>Note:</strong> Premium subscriptions are currently only available on iOS devices.</li>
+            <li><strong>Android:</strong> Ads are displayed to all users. Premium subscriptions are not available on Android at this time, so all Android users will see advertisements.</li>
+        </ul>
+        <p>You can also opt out of personalized ads through your device settings, though ads may still be displayed (they will just be less relevant).</p>
+        <p><strong>TikTok SDK:</strong> If you wish to limit data collection by TikTok SDK, you can adjust your device's advertising preferences. However, this may affect our ability to optimize advertising campaigns.</p>
 
-        <h3>5.4 Marketing Communications</h3>
+        <h3>6.4 Marketing Communications</h3>
         <p>We do not send marketing emails. All communications are service-related (match notifications, account updates).</p>
 
-        <h2>6. Children's Privacy</h2>
+        <h2>7. Children's Privacy</h2>
         <p>MatchyTo is not intended for users under 13 years of age. We do not knowingly collect information from children under 13. If you believe a child has provided us with personal information, please contact us at <a href="mailto:support@matchyto.com" style="color: #008B99;">support@matchyto.com</a>.</p>
 
-        <h2>7. International Data Transfers</h2>
+        <h2>8. International Data Transfers</h2>
         <p>Your information may be transferred to and processed in countries other than your own. We ensure appropriate safeguards are in place to protect your data in accordance with this Privacy Policy.</p>
 
-        <h2>8. Data Retention</h2>
+        <h2>9. Data Retention</h2>
         <ul>
-            <li><strong>Active Accounts:</strong> We retain your data as long as your account is active</li>
-            <li><strong>Deleted Accounts:</strong> Data is permanently deleted within 30 days of account deletion</li>
-            <li><strong>Backups:</strong> Backup copies are deleted within 90 days</li>
+            <li><strong>Active Accounts:</strong> We retain your data as long as your account is active and you use the service</li>
+            <li><strong>Inactive Accounts:</strong> Accounts inactive for more than 1 year may be archived</li>
+            <li><strong>Deleted Accounts:</strong> Data is permanently deleted within 30 days of account deletion request</li>
+            <li><strong>Messages:</strong> Messages in match threads are retained while the match is active. When a match expires or is deleted, associated messages may be archived or deleted.</li>
+            <li><strong>Backups:</strong> Backup copies are deleted within 90 days of account deletion</li>
+            <li><strong>Analytics Data:</strong> Aggregated, anonymized analytics data may be retained longer for service improvement purposes</li>
         </ul>
 
-        <h2>9. Changes to This Policy</h2>
+        <h2>10. Changes to This Policy</h2>
         <p>We may update this Privacy Policy from time to time. We will notify you of significant changes through the app or via email. Your continued use of MatchyTo after changes constitutes acceptance of the updated policy.</p>
 
-        <h2>10. Contact Us</h2>
+        <h2>11. Contact Us</h2>
         <p>If you have questions about this Privacy Policy or your data, please contact us:</p>
         <ul>
             <li><strong>Email:</strong> <a href="mailto:support@matchyto.com" style="color: #008B99;">support@matchyto.com</a></li>
