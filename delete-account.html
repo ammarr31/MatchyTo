@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Account - MatchyTo</title>
+    <link rel="icon" type="image/png" href="applogo.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.8;
+            color: #1A1A1A;
+            background: #F5F5F5;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #008B99 0%, #00A8BA 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        h1 {
+            font-size: 36px;
+            font-weight: 900;
+            margin-bottom: 10px;
+        }
+
+        .last-updated {
+            opacity: 0.9;
+            font-size: 14px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 40px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+        }
+
+        h2 {
+            font-size: 24px;
+            color: #008B99;
+            margin-top: 40px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 18px;
+            color: #1A1A1A;
+            margin-top: 25px;
+            margin-bottom: 10px;
+        }
+
+        p, li {
+            color: #666666;
+            margin-bottom: 15px;
+        }
+
+        ul {
+            margin-left: 25px;
+            margin-bottom: 20px;
+        }
+
+        .highlight {
+            background: rgba(0, 139, 153, 0.1);
+            padding: 20px;
+            border-left: 4px solid #008B99;
+            border-radius: 4px;
+            margin: 20px 0;
+        }
+
+        .warning {
+            background: rgba(255, 152, 0, 0.1);
+            padding: 20px;
+            border-left: 4px solid #FF9800;
+            border-radius: 4px;
+            margin: 20px 0;
+        }
+
+        .steps {
+            background: #F8F9FA;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 25px 0;
+        }
+
+        .step {
+            margin-bottom: 20px;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .step-number {
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: #008B99;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #008B99;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .footer {
+            background: #1A1A1A;
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 20px;
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">
+            <img src="applogo.png" alt="MatchyTo Logo">
+        </div>
+        <h1>Delete Your Account</h1>
+        <p class="last-updated">MatchyTo - Account Deletion Request</p>
+    </div>
+
+    <div class="container">
+        <a href="index.html" class="back-link">← Back to Home</a>
+
+        <div class="warning">
+            <strong>⚠️ Permanent Action</strong><br>
+            Deleting your account is permanent and cannot be undone. All your data will be permanently deleted.
+        </div>
+
+        <h2>How to Request Account Deletion</h2>
+        
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <div>
+                    <strong>Open the MatchyTo App</strong>
+                    <p>Launch the MatchyTo app on your Android device and make sure you are logged in.</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">2</div>
+                <div>
+                    <strong>Navigate to Settings</strong>
+                    <p>Go to the Profile tab (bottom navigation) and tap on "Settings" or the settings icon.</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">3</div>
+                <div>
+                    <strong>Select Delete Account</strong>
+                    <p>Scroll down to find the "Delete Account" option and tap on it.</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">4</div>
+                <div>
+                    <strong>Confirm Deletion</strong>
+                    <p>Read the confirmation message carefully, then confirm that you want to permanently delete your account.</p>
+                </div>
+            </div>
+        </div>
+
+        <h2>What Data Will Be Deleted</h2>
+        <p>When you delete your MatchyTo account, the following data will be permanently deleted:</p>
+        <ul>
+            <li><strong>Account Information:</strong> Email address, username, password, and authentication credentials</li>
+            <li><strong>Profile Data:</strong> Profile picture and all profile settings</li>
+            <li><strong>Calendar Data:</strong> All your availability slots and calendar information</li>
+            <li><strong>Social Connections:</strong> All friend connections, friend requests (sent and received)</li>
+            <li><strong>Matches:</strong> All matches (pending, accepted, and expired) you created or participated in</li>
+            <li><strong>Messages:</strong> All messages and chat conversations in match threads</li>
+            <li><strong>Notifications:</strong> All notification history</li>
+            <li><strong>Preferences:</strong> Language, country, timezone, and all app settings</li>
+            <li><strong>Push Notification Tokens:</strong> FCM tokens for push notifications</li>
+            <li><strong>Premium Subscriptions:</strong> Any active premium subscriptions will be cancelled (iOS only - not applicable for Android)</li>
+        </ul>
+
+        <h2>Data Retention Period</h2>
+        <div class="highlight">
+            <p><strong>Immediate Deletion:</strong> Most of your data is deleted immediately when you request account deletion.</p>
+            <p><strong>Backup Retention:</strong> Some information may remain in our backup systems for up to <strong>90 days</strong> for disaster recovery purposes. After 90 days, all backup copies are permanently deleted.</p>
+            <p><strong>Analytics Data:</strong> Aggregated, anonymized analytics data (which cannot identify you) may be retained longer for service improvement purposes.</p>
+        </div>
+
+        <h2>What Happens After Deletion</h2>
+        <ul>
+            <li>You will be immediately logged out of the app</li>
+            <li>You will no longer receive any notifications from MatchyTo</li>
+            <li>Your username will become available for other users</li>
+            <li>You will need to create a new account if you want to use MatchyTo again in the future</li>
+            <li>You cannot recover any deleted data</li>
+        </ul>
+
+        <h2>Alternative: Contact Support</h2>
+        <p>If you are unable to delete your account through the app, or if you have questions about account deletion, you can contact us:</p>
+        <ul>
+            <li><strong>Email:</strong> <a href="mailto:support@matchyto.com" style="color: #008B99;">support@matchyto.com</a></li>
+            <li><strong>Support Page:</strong> <a href="support.html" style="color: #008B99;">Visit our Support page</a></li>
+        </ul>
+        <p>When contacting us, please include your username or email address so we can locate your account.</p>
+
+        <div class="highlight" style="margin-top: 40px;">
+            <strong>Need Help?</strong><br>
+            If you have questions about account deletion or need assistance, email us at support@matchyto.com. We're here to help.
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div>
+            <a href="index.html">Home</a>
+            <a href="privacy-policy.html">Privacy Policy</a>
+            <a href="terms-of-service.html">Terms of Service</a>
+            <a href="support.html">Support</a>
+        </div>
+        <p style="margin-top: 20px;">&copy; 2025 MatchyTo. All rights reserved.</p>
+    </footer>
+</body>
+</html>
+
