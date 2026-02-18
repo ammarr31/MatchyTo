@@ -3,243 +3,988 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Weino - Find common free time with friends across different timezones">
-    <title>Weino - Find Time Together</title>
+    <meta name="description" content="Weino - Find common free time with friends, groups & book professionals. The smart scheduling app that brings people together.">
+    <title>Weino - Connect and Coordinate with Ease</title>
     <link rel="icon" type="image/png" href="applogo.png">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        :root {
+            --purple: #7C3AED;
+            --purple-light: #9D6FF5;
+            --purple-dark: #5B21B6;
+            --purple-pale: #EDE9FE;
+            --text-dark: #0F0A1E;
+            --text-mid: #4B5563;
+            --text-light: #9CA3AF;
+            --bg: #F9FAFB;
+            --white: #FFFFFF;
+            --border: #E5E7EB;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+            --shadow-md: 0 4px 20px rgba(124, 58, 237, 0.12);
+            --shadow-lg: 0 20px 60px rgba(124, 58, 237, 0.18);
+            --radius: 16px;
+            --radius-sm: 10px;
+            --radius-full: 9999px;
         }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            line-height: 1.6;
-            color: #1A1A1A;
-            background: #F5F5F5;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Inter', Arial, sans-serif;
+            color: var(--text-dark);
+            background: var(--white);
+            overflow-x: hidden;
         }
 
-        .header {
-            background: linear-gradient(135deg, #7C3AED 0%, #9D6FF5 100%);
-            color: white;
-            padding: 60px 20px;
-            text-align: center;
-        }
-
-        .logo {
-            width: 100px;
-            height: 100px;
-            margin: 0 auto 20px;
+        /* ─── NAVBAR ─── */
+        .navbar {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(229,231,235,0.6);
+            padding: 0 24px;
+            height: 68px;
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: space-between;
         }
 
-        .logo img {
-            width: 100%;
-            height: 100%;
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .nav-logo img {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
             object-fit: contain;
         }
 
-        h1 {
-            font-size: 48px;
-            font-weight: 900;
-            margin-bottom: 10px;
-            letter-spacing: 1px;
+        .nav-logo span {
+            font-size: 22px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--purple), var(--purple-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        .tagline {
-            font-size: 20px;
-            opacity: 0.95;
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-mid);
+            font-size: 15px;
             font-weight: 500;
+            padding: 8px 16px;
+            border-radius: var(--radius-full);
+            transition: all 0.2s;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 60px 20px;
+        .nav-links a:hover { color: var(--purple); background: var(--purple-pale); }
+
+        .nav-cta {
+            background: linear-gradient(135deg, var(--purple), var(--purple-light)) !important;
+            color: white !important;
+            padding: 10px 24px !important;
+            font-weight: 600 !important;
+            box-shadow: 0 4px 14px rgba(124,58,237,0.35) !important;
         }
 
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+        .nav-cta:hover {
+            background: linear-gradient(135deg, var(--purple-dark), var(--purple)) !important;
+            transform: translateY(-1px);
+        }
+
+        .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
+        .hamburger span { width: 24px; height: 2px; background: var(--text-dark); border-radius: 2px; transition: 0.3s; }
+
+        /* ─── HERO ─── */
+        .hero {
+            min-height: 100vh;
+            padding: 120px 24px 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(160deg, #F5F0FF 0%, #EDE9FE 40%, #FDFCFF 100%);
+            z-index: 0;
+        }
+
+        .hero-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.35;
+        }
+
+        .hero-blob-1 {
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, #9D6FF5, #7C3AED);
+            top: -100px; right: -100px;
+        }
+
+        .hero-blob-2 {
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, #C4B5FD, #8B5CF6);
+            bottom: -80px; left: -80px;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 760px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-full);
+            padding: 8px 18px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--purple);
+            margin-bottom: 28px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .hero-badge-dot {
+            width: 8px; height: 8px;
+            background: #22C55E;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.3); }
+        }
+
+        .hero h1 {
+            font-size: clamp(42px, 7vw, 72px);
+            font-weight: 900;
+            line-height: 1.1;
+            letter-spacing: -1.5px;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--purple), var(--purple-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: var(--text-mid);
+            line-height: 1.7;
+            max-width: 560px;
+            margin: 0 auto 40px;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
             margin-bottom: 60px;
         }
 
-        .feature-card {
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, var(--purple), var(--purple-light));
+            color: white;
+            text-decoration: none;
+            padding: 16px 32px;
+            border-radius: var(--radius-full);
+            font-size: 16px;
+            font-weight: 700;
+            box-shadow: 0 8px 30px rgba(124,58,237,0.4);
+            transition: all 0.3s;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 40px rgba(124,58,237,0.5);
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
             background: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            color: var(--purple);
+            text-decoration: none;
+            padding: 16px 32px;
+            border-radius: var(--radius-full);
+            font-size: 16px;
+            font-weight: 700;
+            border: 2px solid var(--border);
+            transition: all 0.3s;
         }
 
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 15px rgba(124, 58, 237, 0.15);
+        .btn-secondary:hover {
+            border-color: var(--purple);
+            background: var(--purple-pale);
+            transform: translateY(-3px);
         }
 
-        .feature-icon {
-            font-size: 40px;
-            margin-bottom: 15px;
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            flex-wrap: wrap;
         }
 
-        .feature-card h3 {
-            font-size: 22px;
-            margin-bottom: 10px;
-            color: #7C3AED;
+        .stat {
+            text-align: center;
         }
 
-        .feature-card p {
-            color: #666666;
+        .stat-number {
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--purple), var(--purple-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label { font-size: 13px; color: var(--text-light); font-weight: 500; margin-top: 4px; }
+
+        /* ─── SECTIONS ─── */
+        .section {
+            padding: 100px 24px;
+        }
+
+        .section-inner { max-width: 1200px; margin: 0 auto; }
+
+        .section-label {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--purple);
+            background: var(--purple-pale);
+            padding: 6px 14px;
+            border-radius: var(--radius-full);
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-size: clamp(32px, 5vw, 52px);
+            font-weight: 900;
+            line-height: 1.15;
+            letter-spacing: -1px;
+            margin-bottom: 16px;
+        }
+
+        .section-subtitle {
+            font-size: 18px;
+            color: var(--text-mid);
+            max-width: 560px;
             line-height: 1.7;
         }
 
-        .cta-section {
+        /* ─── FEATURES ─── */
+        .features-bg { background: var(--bg); }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin-top: 60px;
+        }
+
+        .feature-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 36px;
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--purple), var(--purple-light));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+            border-color: transparent;
+        }
+
+        .feature-card:hover::before { opacity: 1; }
+
+        .feature-icon-wrap {
+            width: 56px; height: 56px;
+            background: var(--purple-pale);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+        }
+
+        .feature-card p { color: var(--text-mid); line-height: 1.7; font-size: 15px; }
+
+        /* ─── HOW IT WORKS ─── */
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 32px;
+            margin-top: 60px;
+            position: relative;
+        }
+
+        .step {
             text-align: center;
-            padding: 60px 20px;
-            background: white;
+        }
+
+        .step-number {
+            width: 60px; height: 60px;
+            background: linear-gradient(135deg, var(--purple), var(--purple-light));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            font-weight: 900;
+            color: white;
+            margin: 0 auto 20px;
+            box-shadow: 0 8px 20px rgba(124,58,237,0.35);
+        }
+
+        .step h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; }
+        .step p { color: var(--text-mid); font-size: 15px; line-height: 1.6; }
+
+        /* ─── MATCH TYPES ─── */
+        .match-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-top: 60px;
+        }
+
+        .match-card {
+            border-radius: var(--radius);
+            padding: 40px 32px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .match-card:hover { transform: translateY(-6px); }
+
+        .match-card.personal {
+            background: linear-gradient(145deg, #F5F0FF, #EDE9FE);
+            border: 1px solid #DDD6FE;
+        }
+
+        .match-card.group {
+            background: linear-gradient(145deg, #EFF6FF, #DBEAFE);
+            border: 1px solid #BFDBFE;
+        }
+
+        .match-card.booking {
+            background: linear-gradient(145deg, #F0FDF4, #DCFCE7);
+            border: 1px solid #BBF7D0;
+        }
+
+        .match-emoji { font-size: 52px; margin-bottom: 20px; }
+
+        .match-card h3 { font-size: 22px; font-weight: 800; margin-bottom: 12px; }
+
+        .match-card p { font-size: 15px; color: var(--text-mid); line-height: 1.6; }
+
+        /* ─── HIGHLIGHTS ─── */
+        .highlights-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-top: 60px;
+        }
+
+        .highlight-item {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            padding: 28px;
+            background: var(--white);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+        }
+
+        .highlight-item:hover { box-shadow: var(--shadow-md); border-color: #DDD6FE; }
+
+        .highlight-icon {
+            width: 48px; height: 48px;
+            min-width: 48px;
+            background: var(--purple-pale);
             border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
-            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+        }
+
+        .highlight-item h4 { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+        .highlight-item p { font-size: 14px; color: var(--text-mid); line-height: 1.6; }
+
+        /* ─── CTA SECTION ─── */
+        .cta-section {
+            background: linear-gradient(135deg, var(--purple-dark) 0%, var(--purple) 50%, var(--purple-light) 100%);
+            border-radius: 32px;
+            padding: 80px 40px;
+            text-align: center;
+            margin: 0 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            width: 400px; height: 400px;
+            background: rgba(255,255,255,0.06);
+            border-radius: 50%;
+            top: -150px; right: -100px;
+        }
+
+        .cta-section::after {
+            content: '';
+            position: absolute;
+            width: 300px; height: 300px;
+            background: rgba(255,255,255,0.04);
+            border-radius: 50%;
+            bottom: -100px; left: -80px;
         }
 
         .cta-section h2 {
-            font-size: 32px;
-            margin-bottom: 20px;
-            color: #1A1A1A;
+            font-size: clamp(32px, 5vw, 52px);
+            font-weight: 900;
+            color: white;
+            margin-bottom: 16px;
+            position: relative;
+            z-index: 1;
         }
 
-        .app-badges {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 30px;
+        .cta-section p {
+            font-size: 18px;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 40px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            z-index: 1;
         }
 
-        .badge {
-            display: inline-block;
-            padding: 12px 30px;
-            background: #7C3AED;
+        .cta-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; position: relative; z-index: 1; }
+
+        .btn-white {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: white;
+            color: var(--purple);
+            text-decoration: none;
+            padding: 16px 32px;
+            border-radius: var(--radius-full);
+            font-size: 16px;
+            font-weight: 700;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+        }
+
+        .btn-white:hover { transform: translateY(-3px); box-shadow: 0 14px 40px rgba(0,0,0,0.3); }
+
+        .btn-outline-white {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: transparent;
             color: white;
             text-decoration: none;
-            border-radius: 8px;
-            font-weight: 600;
-            transition: background 0.3s ease;
+            padding: 16px 32px;
+            border-radius: var(--radius-full);
+            font-size: 16px;
+            font-weight: 700;
+            border: 2px solid rgba(255,255,255,0.5);
+            transition: all 0.3s;
         }
 
-        .badge:hover {
-            background: #5B21B6;
-        }
+        .btn-outline-white:hover { background: rgba(255,255,255,0.15); border-color: white; }
 
-        .footer {
-            background: #1A1A1A;
+        /* ─── FOOTER ─── */
+        footer {
+            background: var(--text-dark);
             color: white;
-            padding: 40px 20px;
-            text-align: center;
+            padding: 60px 24px 32px;
+            margin-top: 80px;
         }
 
-        .footer-links {
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 48px;
+        }
+
+        .footer-brand img {
+            width: 44px; height: 44px;
+            border-radius: 12px;
+            margin-bottom: 14px;
+        }
+
+        .footer-brand h3 {
+            font-size: 22px;
+            font-weight: 800;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, var(--purple-light), #C4B5FD);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer-brand p { color: #9CA3AF; font-size: 14px; line-height: 1.7; max-width: 280px; }
+
+        .footer-col h4 { font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #6B7280; margin-bottom: 20px; }
+
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 12px; }
+        .footer-col ul li a { color: #9CA3AF; text-decoration: none; font-size: 15px; transition: color 0.2s; }
+        .footer-col ul li a:hover { color: white; }
+
+        .footer-bottom {
+            border-top: 1px solid #1F2937;
+            padding-top: 28px;
             display: flex;
-            gap: 30px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-bottom: 20px;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: gap;
+            gap: 16px;
         }
 
-        .footer-links a {
-            color: white;
-            text-decoration: none;
-            transition: opacity 0.3s ease;
+        .footer-bottom p { color: #6B7280; font-size: 14px; }
+        .footer-bottom a { color: #9CA3AF; text-decoration: none; font-size: 14px; margin-left: 20px; transition: color 0.2s; }
+        .footer-bottom a:hover { color: white; }
+
+        /* ─── DIVIDER ─── */
+        .divider { width: 80px; height: 4px; background: linear-gradient(90deg, var(--purple), var(--purple-light)); border-radius: 4px; margin: 20px 0 0; }
+
+        /* ─── MOBILE MENU ─── */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 68px; left: 0; right: 0;
+            background: white;
+            border-bottom: 1px solid var(--border);
+            padding: 20px 24px;
+            flex-direction: column;
+            gap: 8px;
+            z-index: 999;
         }
 
-        .footer-links a:hover {
-            opacity: 0.8;
-        }
+        .mobile-menu.open { display: flex; }
+        .mobile-menu a { text-decoration: none; color: var(--text-mid); font-size: 16px; font-weight: 500; padding: 12px 16px; border-radius: var(--radius-sm); transition: all 0.2s; }
+        .mobile-menu a:hover { color: var(--purple); background: var(--purple-pale); }
+        .mobile-menu .nav-cta { background: var(--purple) !important; color: white !important; text-align: center; }
 
+        /* ─── RESPONSIVE ─── */
         @media (max-width: 768px) {
-            h1 {
-                font-size: 36px;
-            }
-
-            .features {
-                grid-template-columns: 1fr;
-            }
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
+            .highlights-grid { grid-template-columns: 1fr; }
+            .footer-top { grid-template-columns: 1fr; gap: 36px; }
+            .footer-bottom { flex-direction: column; text-align: center; }
+            .hero { padding-top: 100px; }
+            .cta-section { margin: 0 16px; padding: 60px 24px; }
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <div class="logo">
-            <img src="applogo.png" alt="Weino Logo">
-        </div>
-        <h1>Weino</h1>
-        <p class="tagline">Find time together, no matter where you are</p>
+
+<!-- ─── NAVBAR ─── -->
+<nav class="navbar">
+    <a href="index.html" class="nav-logo">
+        <img src="applogo.png" alt="Weino Logo">
+        <span>Weino</span>
+    </a>
+
+    <ul class="nav-links">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#how-it-works">How It Works</a></li>
+        <li><a href="#match-types">Match Types</a></li>
+        <li><a href="support.html">Support</a></li>
+        <li><a href="#download" class="nav-cta">Download App</a></li>
+    </ul>
+
+    <div class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+        <span></span><span></span><span></span>
     </div>
+</nav>
 
-    <div class="container">
-        <div class="features">
-            <div class="feature-card">
-                <div class="feature-icon">🌍</div>
-                <h3>Timezone Smart</h3>
-                <p>Automatically syncs availability across different timezones. Perfect for international teams and friendships.</p>
-            </div>
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+    <a href="#features" onclick="toggleMenu()">Features</a>
+    <a href="#how-it-works" onclick="toggleMenu()">How It Works</a>
+    <a href="#match-types" onclick="toggleMenu()">Match Types</a>
+    <a href="support.html" onclick="toggleMenu()">Support</a>
+    <a href="#download" class="nav-cta" onclick="toggleMenu()">Download App</a>
+</div>
 
-            <div class="feature-card">
-                <div class="feature-icon">📆</div>
-                <h3>Smart Scheduling</h3>
-                <p>Add your free time slots and let MatchyTo find overlapping availability with your friends automatically.</p>
-            </div>
+<!-- ─── HERO ─── -->
+<section class="hero" id="home">
+    <div class="hero-bg"></div>
+    <div class="hero-blob hero-blob-1"></div>
+    <div class="hero-blob hero-blob-2"></div>
 
-            <div class="feature-card">
-                <div class="feature-icon">👥</div>
-                <h3>Group Matching</h3>
-                <p>Find common time for multiple people at once. Perfect for team meetings, study groups, or hangouts.</p>
-            </div>
-
-            <div class="feature-card">
-                <div class="feature-icon">🔔</div>
-                <h3>Smart Reminders</h3>
-                <p>Never miss a meeting with intelligent notifications that remind you before your scheduled matches.</p>
-            </div>
-
-            <div class="feature-card">
-                <div class="feature-icon">🔄</div>
-                <h3>Recurring Availability</h3>
-                <p>Set your regular free time once and it repeats automatically every week. Update anytime you need.</p>
-            </div>
-
-            <div class="feature-card">
-                <div class="feature-icon">⚡</div>
-                <h3>Instant Matching</h3>
-                <p>Get real-time suggestions for overlapping free time. Accept or reject match requests with one tap.</p>
-            </div>
+    <div class="hero-content">
+        <div class="hero-badge">
+            <span class="hero-badge-dot"></span>
+            Now Available on iOS & Android
         </div>
 
-        <div class="cta-section">
-            <h2>Ready to find time together?</h2>
-            <p style="font-size: 18px; color: #666666; margin-bottom: 10px;">
-                Download Weino and start connecting with friends across the globe
-            </p>
-            <div class="app-badges">
-                <a href="#" class="badge">📱 Download on App Store</a>
-                <a href="#" class="badge">🤖 Get it on Google Play</a>
+        <h1>
+            Stop asking<br>
+            <span>"When are you free?"</span>
+        </h1>
+
+        <p>
+            Weino finds your shared free time automatically. Match schedules with friends, coordinate groups, and book professionals — all in one place.
+        </p>
+
+        <div class="hero-actions">
+            <a href="https://apps.apple.com/at/app/weino/id6756211510?l=en-GB" target="_blank" class="btn-primary">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                App Store
+            </a>
+            <a href="https://play.google.com/store/apps/details?id=com.matchyto.app" target="_blank" class="btn-secondary">
+                <svg width="20" height="20" viewBox="0 0 512 512" fill="currentColor"><path d="M48 59.49v393a4.33 4.33 0 007.37 3.07L274 256 55.37 56.42A4.33 4.33 0 0048 59.49zM345.8 174L89.22 32.64l-.16-.09c-4.42-2.4-8.62 3.58-5 7.06L285 231.92zM84.08 479.37c-3.58 3.48.56 9.46 5 7.06l.16-.09L345.8 338l-60.8-57.92zM449.38 231l-71.65-39.46L310.36 256l67.37 64.43L449.38 281c19.49-10.77 19.49-39.23 0-50z"/></svg>
+                Google Play
+            </a>
+        </div>
+
+        <div class="hero-stats">
+            <div class="stat">
+                <div class="stat-number">3</div>
+                <div class="stat-label">Match Types</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">Real-Time</div>
+                <div class="stat-label">Chat & Matching</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">Free</div>
+                <div class="stat-label">To Download</div>
             </div>
         </div>
     </div>
+</section>
 
-    <footer class="footer">
-        <div class="footer-links">
-            <a href="privacy-policy.html">Privacy Policy</a>
-            <a href="terms-of-service.html">Terms of Service</a>
-            <a href="child-safety-standards.html">Child Safety Standards</a>
-            <a href="support.html">Support</a>
-            <a href="mailto:amarhaikal208@gmail.com">Contact Us</a>
+<!-- ─── FEATURES ─── -->
+<section class="section features-bg" id="features">
+    <div class="section-inner">
+        <div class="section-label">Features</div>
+        <h2 class="section-title">Everything you need to<br>coordinate effortlessly</h2>
+        <p class="section-subtitle">Weino handles the scheduling chaos so you can focus on actually spending time with the people that matter.</p>
+        <div class="divider"></div>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon-wrap">🗓️</div>
+                <h3>Smart Time Matching</h3>
+                <p>Set your available time slots and let Weino automatically find overlapping free time with your friends, even across different timezones.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon-wrap">👥</div>
+                <h3>Groups & Circles</h3>
+                <p>Create friend groups for recurring meetups and coordinate availability for the entire group at once — no more endless group chats.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon-wrap">💬</div>
+                <h3>Real-Time Match Chat</h3>
+                <p>Chat inside every match with reactions, replies, image sharing, and typing indicators. Stay on the same page, instantly.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon-wrap">🏢</div>
+                <h3>Book Professionals</h3>
+                <p>Discover and book sessions with coaches, consultants, therapists and more. Browse by category and country, then pick a time slot.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon-wrap">🔔</div>
+                <h3>Instant Notifications</h3>
+                <p>Never miss a match invitation or message. Weino sends real-time push notifications for every important update to your schedule.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon-wrap">🌍</div>
+                <h3>Timezone Aware</h3>
+                <p>Weino is built for global friendships. It intelligently handles timezone differences so scheduling never feels complicated again.</p>
+            </div>
         </div>
-        <p>&copy; 2025/2026 Weino. All rights reserved.</p>
-    </footer>
+    </div>
+</section>
+
+<!-- ─── HOW IT WORKS ─── -->
+<section class="section" id="how-it-works">
+    <div class="section-inner">
+        <div style="text-align: center;">
+            <div class="section-label">How It Works</div>
+            <h2 class="section-title">Match in 3 simple steps</h2>
+            <p class="section-subtitle" style="margin: 0 auto 0;">No more back-and-forth messages. Weino makes coordinating feel instant and effortless.</p>
+        </div>
+
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3>Add Your Free Time</h3>
+                <p>Tell Weino when you're available by adding your free time slots to your personal calendar. Set one-time or recurring slots.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3>Find & Invite Friends</h3>
+                <p>Add friends to your network and send them a match request. Weino instantly finds overlapping availability between all participants.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3>Confirm & Connect</h3>
+                <p>Accept the match, jump into the built-in chat, and coordinate the details. Your time together, simplified.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <h3>Get Notified</h3>
+                <p>Receive real-time push notifications when friends respond to matches, send messages, or when a match is about to happen.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ─── MATCH TYPES ─── -->
+<section class="section features-bg" id="match-types">
+    <div class="section-inner">
+        <div style="text-align: center;">
+            <div class="section-label">Match Types</div>
+            <h2 class="section-title">One app, three ways to connect</h2>
+            <p class="section-subtitle" style="margin: 0 auto;">Whether it's catching up with a friend, planning a group outing, or booking a pro — Weino has you covered.</p>
+        </div>
+
+        <div class="match-types">
+            <div class="match-card personal">
+                <div class="match-emoji">🤝</div>
+                <h3>Personal Match</h3>
+                <p>1-on-1 scheduling with any friend. Find the perfect time slot that works for both of you without any back-and-forth.</p>
+            </div>
+            <div class="match-card group">
+                <div class="match-emoji">🎉</div>
+                <h3>Group Match</h3>
+                <p>Coordinate with multiple friends at once. Weino finds time that works for everyone in your group simultaneously.</p>
+            </div>
+            <div class="match-card booking">
+                <div class="match-emoji">📋</div>
+                <h3>Professional Booking</h3>
+                <p>Book sessions with verified professionals — coaches, consultants, therapists. Browse by category and country.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ─── HIGHLIGHTS ─── -->
+<section class="section">
+    <div class="section-inner">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 40px; margin-bottom: 60px;">
+            <div>
+                <div class="section-label">Why Weino</div>
+                <h2 class="section-title">Built for real-life<br>coordination</h2>
+                <div class="divider"></div>
+            </div>
+            <p class="section-subtitle" style="margin-top: 20px; max-width: 420px;">Weino is built around the way real friendships and professional relationships actually work.</p>
+        </div>
+
+        <div class="highlights-grid">
+            <div class="highlight-item">
+                <div class="highlight-icon">🔄</div>
+                <div>
+                    <h4>Recurring Availability</h4>
+                    <p>Set your regular weekly schedule once. Weino repeats it automatically, saving you time every week.</p>
+                </div>
+            </div>
+            <div class="highlight-item">
+                <div class="highlight-icon">👤</div>
+                <div>
+                    <h4>Online Status & Presence</h4>
+                    <p>See when your friends are active in real-time. Know who's available before you even send a match request.</p>
+                </div>
+            </div>
+            <div class="highlight-item">
+                <div class="highlight-icon">🌐</div>
+                <div>
+                    <h4>Multi-Language Support</h4>
+                    <p>Fully localized in English and Arabic with complete RTL (right-to-left) interface support.</p>
+                </div>
+            </div>
+            <div class="highlight-item">
+                <div class="highlight-icon">🌙</div>
+                <div>
+                    <h4>Dark Mode Support</h4>
+                    <p>Weino adapts to your device's appearance settings with a full dark mode that's easy on your eyes.</p>
+                </div>
+            </div>
+            <div class="highlight-item">
+                <div class="highlight-icon">🔒</div>
+                <div>
+                    <h4>Private & Secure</h4>
+                    <p>Your data is encrypted and stored securely. You control who sees your availability and profile.</p>
+                </div>
+            </div>
+            <div class="highlight-item">
+                <div class="highlight-icon">⭐</div>
+                <div>
+                    <h4>Premium Ad-Free Experience</h4>
+                    <p>Upgrade to Weino Premium on iOS for an ad-free experience with larger group match capacity and exclusive features.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ─── CTA ─── -->
+<section class="section" id="download" style="padding-bottom: 0;">
+    <div class="cta-section">
+        <h2>Ready to stop asking<br>"When are you free?"</h2>
+        <p>Join Weino today and start coordinating time with the people who matter most.</p>
+        <div class="cta-btns">
+            <a href="https://apps.apple.com/at/app/weino/id6756211510?l=en-GB" target="_blank" class="btn-white">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                Download for iOS
+            </a>
+            <a href="https://play.google.com/store/apps/details?id=com.matchyto.app" target="_blank" class="btn-outline-white">
+                <svg width="20" height="20" viewBox="0 0 512 512" fill="currentColor"><path d="M48 59.49v393a4.33 4.33 0 007.37 3.07L274 256 55.37 56.42A4.33 4.33 0 0048 59.49zM345.8 174L89.22 32.64l-.16-.09c-4.42-2.4-8.62 3.58-5 7.06L285 231.92zM84.08 479.37c-3.58 3.48.56 9.46 5 7.06l.16-.09L345.8 338l-60.8-57.92zM449.38 231l-71.65-39.46L310.36 256l67.37 64.43L449.38 281c19.49-10.77 19.49-39.23 0-50z"/></svg>
+                Download for Android
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+    <div class="footer-inner">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <img src="applogo.png" alt="Weino Logo">
+                <h3>Weino</h3>
+                <p>Connect and coordinate with ease. The smart scheduling app that finds your shared free time automatically.</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="terms-of-service.html">Terms of Service</a></li>
+                    <li><a href="child-safety-standards.html">Child Safety</a></li>
+                    <li><a href="delete-account.html">Delete Account</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Help</h4>
+                <ul>
+                    <li><a href="support.html">Support & FAQ</a></li>
+                    <li><a href="mailto:amarhaikal208@gmail.com">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025/2026 Weino. All rights reserved.</p>
+            <div>
+                <a href="privacy-policy.html">Privacy</a>
+                <a href="terms-of-service.html">Terms</a>
+                <a href="mailto:amarhaikal208@gmail.com">Contact</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    function toggleMenu() {
+        const menu = document.getElementById('mobileMenu');
+        menu.classList.toggle('open');
+    }
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', function(e) {
+        const menu = document.getElementById('mobileMenu');
+        const hamburger = document.querySelector('.hamburger');
+        if (!menu.contains(e.target) && !hamburger.contains(e.target)) {
+            menu.classList.remove('open');
+        }
+    });
+
+    // Smooth highlight on scroll
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.feature-card, .step, .match-card, .highlight-item').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(24px)';
+        el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        observer.observe(el);
+    });
+</script>
+
 </body>
 </html>

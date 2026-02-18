@@ -6,181 +6,233 @@
     <title>Delete Account - Weino</title>
     <link rel="icon" type="image/png" href="applogo.png">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+
+        :root {
+            --purple: #7C3AED;
+            --purple-light: #9D6FF5;
+            --purple-dark: #5B21B6;
+            --purple-pale: #EDE9FE;
+            --text-dark: #0F0A1E;
+            --text-mid: #4B5563;
+            --text-light: #9CA3AF;
+            --bg: #F9FAFB;
+            --white: #FFFFFF;
+            --border: #E5E7EB;
+            --radius: 16px;
+            --radius-sm: 10px;
+            --radius-full: 9999px;
         }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            line-height: 1.8;
-            color: #1A1A1A;
-            background: #F5F5F5;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Inter', Arial, sans-serif;
+            color: var(--text-dark);
+            background: var(--bg);
+            overflow-x: hidden;
         }
 
-        .header {
-            background: linear-gradient(135deg, #7C3AED 0%, #9D6FF5 100%);
-            color: white;
-            padding: 40px 20px;
+        /* NAVBAR */
+        .navbar {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            background: rgba(255,255,255,0.88);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(229,231,235,0.6);
+            padding: 0 24px; height: 68px;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .nav-logo img { width: 38px; height: 38px; border-radius: 10px; object-fit: contain; }
+        .nav-logo span {
+            font-size: 22px; font-weight: 800;
+            background: linear-gradient(135deg, var(--purple), var(--purple-light));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .nav-links { display: flex; align-items: center; gap: 8px; list-style: none; }
+        .nav-links a {
+            text-decoration: none; color: var(--text-mid); font-size: 15px; font-weight: 500;
+            padding: 8px 16px; border-radius: var(--radius-full); transition: all 0.2s;
+        }
+        .nav-links a:hover { color: var(--purple); background: var(--purple-pale); }
+        .nav-cta {
+            background: linear-gradient(135deg, var(--purple), var(--purple-light)) !important;
+            color: white !important; padding: 10px 24px !important; font-weight: 600 !important;
+            box-shadow: 0 4px 14px rgba(124,58,237,0.35) !important;
+        }
+        .nav-cta:hover { opacity: 0.9; transform: translateY(-1px); }
+        .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
+        .hamburger span { width: 24px; height: 2px; background: var(--text-dark); border-radius: 2px; }
+
+        /* PAGE HERO */
+        .page-hero {
+            background: linear-gradient(135deg, var(--purple-dark) 0%, var(--purple) 60%, var(--purple-light) 100%);
+            padding: 100px 24px 50px;
             text-align: center;
+            position: relative;
+            overflow: hidden;
         }
+        .page-hero::before {
+            content: ''; position: absolute; width: 400px; height: 400px;
+            background: rgba(255,255,255,0.06); border-radius: 50%;
+            top: -150px; right: -100px;
+        }
+        .page-hero::after {
+            content: ''; position: absolute; width: 300px; height: 300px;
+            background: rgba(255,255,255,0.04); border-radius: 50%;
+            bottom: -100px; left: -80px;
+        }
+        .page-hero-inner { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; }
+        .page-hero img { width: 60px; height: 60px; border-radius: 14px; margin-bottom: 16px; }
+        .page-hero h1 { font-size: clamp(28px, 5vw, 44px); font-weight: 900; color: white; margin-bottom: 10px; letter-spacing: -0.5px; }
+        .page-hero p { color: rgba(255,255,255,0.8); font-size: 16px; }
+        .page-hero a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 14px; display: inline-block; margin-top: 16px; transition: color 0.2s; }
+        .page-hero a:hover { color: white; }
 
-        .logo {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        /* CONTENT */
+        .page-content {
+            max-width: 900px; margin: -32px auto 60px;
+            background: white; border-radius: 20px;
+            padding: 48px; position: relative; z-index: 2;
+            box-shadow: 0 4px 40px rgba(0,0,0,0.08);
+            border: 1px solid var(--border);
         }
-
-        .logo img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-
-        h1 {
-            font-size: 36px;
-            font-weight: 900;
-            margin-bottom: 10px;
-        }
-
-        .last-updated {
-            opacity: 0.9;
-            font-size: 14px;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 40px auto;
-            padding: 40px;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
-        }
-
-        h2 {
-            font-size: 24px;
-            color: #7C3AED;
-            margin-top: 40px;
-            margin-bottom: 15px;
-        }
-
-        h3 {
-            font-size: 18px;
-            color: #1A1A1A;
-            margin-top: 25px;
-            margin-bottom: 10px;
-        }
-
-        p, li {
-            color: #666666;
-            margin-bottom: 15px;
-        }
-
-        ul {
-            margin-left: 25px;
-            margin-bottom: 20px;
-        }
+        h2 { font-size: 22px; color: var(--purple); margin-top: 36px; margin-bottom: 12px; font-weight: 700; }
+        h3 { font-size: 17px; color: var(--text-dark); margin-top: 22px; margin-bottom: 8px; font-weight: 700; }
+        p, li { color: var(--text-mid); margin-bottom: 14px; line-height: 1.8; font-size: 15px; }
+        ul { margin-left: 22px; margin-bottom: 18px; }
 
         .highlight {
-            background: rgba(124, 58, 237, 0.1);
-            padding: 20px;
-            border-left: 4px solid #7C3AED;
-            border-radius: 4px;
-            margin: 20px 0;
+            background: rgba(124, 58, 237, 0.07); padding: 20px;
+            border-left: 4px solid var(--purple); border-radius: 8px; margin: 20px 0;
+        }
+        .highlight p, .highlight li { color: var(--text-dark); margin-bottom: 0; }
+
+        .warning-box {
+            background: rgba(251, 191, 36, 0.1); padding: 20px;
+            border-left: 4px solid #F59E0B; border-radius: 8px; margin: 20px 0;
+        }
+        .critical-box {
+            background: rgba(239, 68, 68, 0.08); padding: 20px;
+            border-left: 4px solid #EF4444; border-radius: 8px; margin: 20px 0;
         }
 
-        .warning {
-            background: rgba(255, 152, 0, 0.1);
-            padding: 20px;
-            border-left: 4px solid #FF9800;
-            border-radius: 4px;
-            margin: 20px 0;
+        a { color: var(--purple); }
+
+        /* FAQ (support page) */
+        .faq-item { margin-bottom: 16px; border: 1px solid var(--border); border-radius: var(--radius-sm); overflow: hidden; }
+        .faq-question {
+            padding: 18px 20px; font-weight: 600; font-size: 15px; cursor: pointer;
+            background: white; display: flex; justify-content: space-between; align-items: center;
+            transition: background 0.2s;
+        }
+        .faq-question:hover { background: var(--purple-pale); color: var(--purple); }
+        .faq-answer { padding: 0 20px 18px; color: var(--text-mid); font-size: 14px; line-height: 1.7; }
+
+        /* STEP */
+        .step-list { counter-reset: steps; list-style: none; margin-left: 0; }
+        .step-list li {
+            counter-increment: steps; padding: 20px 20px 20px 60px; position: relative;
+            margin-bottom: 16px; background: var(--bg); border-radius: var(--radius-sm);
+            border: 1px solid var(--border);
+        }
+        .step-list li::before {
+            content: counter(steps); position: absolute; left: 16px; top: 18px;
+            width: 28px; height: 28px; background: linear-gradient(135deg, var(--purple), var(--purple-light));
+            color: white; font-weight: 800; font-size: 13px;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
         }
 
-        .steps {
-            background: #F8F9FA;
-            padding: 25px;
-            border-radius: 8px;
-            margin: 25px 0;
+        /* MOBILE MENU */
+        .mobile-menu {
+            display: none; position: fixed; top: 68px; left: 0; right: 0;
+            background: white; border-bottom: 1px solid var(--border);
+            padding: 20px 24px; flex-direction: column; gap: 8px; z-index: 999;
         }
+        .mobile-menu.open { display: flex; }
+        .mobile-menu a {
+            text-decoration: none; color: var(--text-mid); font-size: 16px; font-weight: 500;
+            padding: 12px 16px; border-radius: var(--radius-sm); transition: all 0.2s;
+        }
+        .mobile-menu a:hover { color: var(--purple); background: var(--purple-pale); }
+        .mobile-menu .nav-cta { background: var(--purple) !important; color: white !important; text-align: center; }
 
-        .step {
-            margin-bottom: 20px;
-            padding-left: 30px;
-            position: relative;
+        /* FOOTER */
+        footer {
+            background: var(--text-dark); color: white;
+            padding: 60px 24px 32px; margin-top: 0;
         }
-
-        .step-number {
-            position: absolute;
-            left: 0;
-            top: 0;
-            background: #7C3AED;
-            color: white;
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 14px;
+        .footer-inner { max-width: 1200px; margin: 0 auto; }
+        .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 60px; margin-bottom: 48px; }
+        .footer-brand img { width: 44px; height: 44px; border-radius: 12px; margin-bottom: 14px; }
+        .footer-brand h3 {
+            font-size: 20px; font-weight: 800; margin-bottom: 10px;
+            background: linear-gradient(135deg, var(--purple-light), #C4B5FD);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
         }
-
-        .back-link {
-            display: inline-block;
-            margin-bottom: 20px;
-            color: #7C3AED;
-            text-decoration: none;
-            font-weight: 600;
+        .footer-brand p { color: #9CA3AF; font-size: 14px; line-height: 1.7; max-width: 280px; }
+        .footer-col h4 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #6B7280; margin-bottom: 18px; }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 10px; }
+        .footer-col ul li a { color: #9CA3AF; text-decoration: none; font-size: 14px; transition: color 0.2s; }
+        .footer-col ul li a:hover { color: white; }
+        .footer-bottom {
+            border-top: 1px solid #1F2937; padding-top: 28px;
+            display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap;
         }
-
-        .back-link:hover {
-            text-decoration: underline;
-        }
-
-        .footer {
-            background: #1A1A1A;
-            color: white;
-            padding: 30px 20px;
-            text-align: center;
-            margin-top: 60px;
-        }
-
-        .footer a {
-            color: white;
-            text-decoration: none;
-            margin: 0 15px;
-        }
+        .footer-bottom p { color: #6B7280; font-size: 14px; }
+        .footer-bottom a { color: #9CA3AF; text-decoration: none; font-size: 14px; margin-left: 20px; transition: color 0.2s; }
+        .footer-bottom a:hover { color: white; }
 
         @media (max-width: 768px) {
-            .container {
-                margin: 20px;
-                padding: 20px;
-            }
-
-            h1 {
-                font-size: 28px;
-            }
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
+            .footer-top { grid-template-columns: 1fr; gap: 32px; }
+            .footer-bottom { flex-direction: column; text-align: center; }
+            .page-content { margin: -20px 16px 40px; padding: 28px 20px; }
         }
+
     </style>
 </head>
 <body>
-    <div class="header">
-        <div class="logo">
-            <img src="applogo.png" alt="Weino Logo">
-        </div>
-        <h1>Delete Your Account</h1>
-        <p class="last-updated">Weino - Account Deletion Request</p>
+
+<nav class="navbar">
+    <a href="index.html" class="nav-logo">
+        <img src="applogo.png" alt="Weino Logo">
+        <span>Weino</span>
+    </a>
+    <ul class="nav-links">
+        <li><a href="index.html#features">Features</a></li>
+        <li><a href="index.html#how-it-works">How It Works</a></li>
+        <li><a href="index.html#match-types">Match Types</a></li>
+        <li><a href="support.html">Support</a></li>
+        <li><a href="index.html#download" class="nav-cta">Download App</a></li>
+    </ul>
+    <div class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+        <span></span><span></span><span></span>
     </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+    <a href="index.html#features" onclick="toggleMenu()">Features</a>
+    <a href="index.html#how-it-works" onclick="toggleMenu()">How It Works</a>
+    <a href="index.html#match-types" onclick="toggleMenu()">Match Types</a>
+    <a href="support.html" onclick="toggleMenu()">Support</a>
+    <a href="index.html#download" class="nav-cta" onclick="toggleMenu()">Download App</a>
+</div>
 
-    <div class="container">
-        <a href="index.html" class="back-link">← Back to Home</a>
 
-        <div class="warning">
+<section class="page-hero">
+    <div class="page-hero-inner">
+        <img src="applogo.png" alt="Weino Logo">
+        <h1>Delete Account</h1>
+        <p>How to permanently delete your Weino account</p>
+        <a href="index.html">← Back to Home</a>
+    </div>
+</section>
+
+<div class="page-content">
+
+<div class="warning">
             <strong>⚠️ Permanent Action</strong><br>
             Deleting your account is permanent and cannot be undone. All your data will be permanently deleted.
         </div>
@@ -264,17 +316,56 @@
             <strong>Need Help?</strong><br>
             If you have questions about account deletion or need assistance, email us at amarhaikal208@gmail.com. We're here to help.
         </div>
-    </div>
+    
+</div>
 
-    <footer class="footer">
-        <div>
-            <a href="index.html">Home</a>
-            <a href="privacy-policy.html">Privacy Policy</a>
-            <a href="terms-of-service.html">Terms of Service</a>
-            <a href="support.html">Support</a>
+<footer>
+    <div class="footer-inner">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <img src="applogo.png" alt="Weino Logo">
+                <h3>Weino</h3>
+                <p>Connect and coordinate with ease. The smart scheduling app that finds your shared free time automatically.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="terms-of-service.html">Terms of Service</a></li>
+                    <li><a href="child-safety-standards.html">Child Safety</a></li>
+                    <li><a href="delete-account.html">Delete Account</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Help</h4>
+                <ul>
+                    <li><a href="support.html">Support &amp; FAQ</a></li>
+                    <li><a href="mailto:amarhaikal208@gmail.com">Contact Us</a></li>
+                </ul>
+            </div>
         </div>
-        <p style="margin-top: 20px;">&copy; 2025 Weino. All rights reserved.</p>
-    </footer>
+        <div class="footer-bottom">
+            <p>&copy; 2025/2026 Weino. All rights reserved.</p>
+            <div>
+                <a href="privacy-policy.html">Privacy</a>
+                <a href="terms-of-service.html">Terms</a>
+                <a href="mailto:amarhaikal208@gmail.com">Contact</a>
+            </div>
+        </div>
+    </div>
+</footer>
+<script>
+function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+}
+document.addEventListener('click', function(e) {
+    const menu = document.getElementById('mobileMenu');
+    const hb = document.querySelector('.hamburger');
+    if (menu && hb && !menu.contains(e.target) && !hb.contains(e.target)) {
+        menu.classList.remove('open');
+    }
+});
+</script>
+
 </body>
 </html>
-
