@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privacy Policy - Weino</title>
     <link rel="icon" type="image/png" href="applogo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900&family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <style>
 
         :root {
@@ -27,7 +30,7 @@
         html { scroll-behavior: smooth; }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Inter', Arial, sans-serif;
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             color: var(--text-dark);
             background: var(--bg);
             overflow-x: hidden;
@@ -43,7 +46,7 @@
             display: flex; align-items: center; justify-content: space-between;
         }
         .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-        .nav-logo img { width: 38px; height: 38px; border-radius: 10px; object-fit: contain; }
+        .nav-logo img { width: 38px; height: 38px; border-radius: 10px; object-fit: cover; background: var(--purple); }
         .nav-logo span {
             font-size: 22px; font-weight: 800;
             background: linear-gradient(135deg, var(--purple), var(--purple-light));
@@ -184,6 +187,39 @@
         .footer-bottom a { color: #9CA3AF; text-decoration: none; font-size: 14px; margin-left: 20px; transition: color 0.2s; }
         .footer-bottom a:hover { color: white; }
 
+        /* NAV RIGHT / LANG BTN */
+        .nav-right { display: flex; align-items: center; gap: 12px; }
+        .lang-btn {
+            display: flex; align-items: center; gap: 6px;
+            background: transparent; border: 1.5px solid var(--purple);
+            border-radius: var(--radius-full); padding: 7px 16px;
+            color: var(--purple); font-size: 14px; font-weight: 600;
+            cursor: pointer; transition: all 0.2s; white-space: nowrap; font-family: inherit;
+        }
+        .lang-btn:hover { background: var(--purple); color: white; }
+
+        /* BACK HOME BUTTON */
+        .back-home-btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(255,255,255,0.15); border: 1.5px solid rgba(255,255,255,0.35);
+            border-radius: var(--radius-full); padding: 10px 22px;
+            color: white !important; text-decoration: none; font-size: 14px; font-weight: 600;
+            margin-top: 20px; transition: all 0.2s; backdrop-filter: blur(8px);
+        }
+        .back-home-btn:hover { background: rgba(255,255,255,0.28); border-color: rgba(255,255,255,0.6); transform: translateY(-1px); }
+
+        /* RTL SUPPORT */
+        html[dir="rtl"] body { font-family: 'Cairo', 'Segoe UI', sans-serif; }
+        html[dir="rtl"] .page-hero h1 { letter-spacing: 0; }
+        html[dir="rtl"] .highlight { border-left: none; border-right: 4px solid var(--purple); }
+        html[dir="rtl"] .warning-box { border-left: none; border-right: 4px solid #F59E0B; }
+        html[dir="rtl"] .critical-box { border-left: none; border-right: 4px solid #EF4444; }
+        html[dir="rtl"] ul { margin-left: 0; margin-right: 22px; }
+        html[dir="rtl"] .step-list li { padding: 20px 60px 20px 20px; }
+        html[dir="rtl"] .step-list li::before { left: auto; right: 16px; }
+        html[dir="rtl"] .footer-col h4 { letter-spacing: 0; }
+        html[dir="rtl"] .footer-bottom a { margin-left: 0; margin-right: 20px; }
+
         @media (max-width: 768px) {
             .nav-links { display: none; }
             .hamburger { display: flex; }
@@ -202,35 +238,40 @@
         <span>Weino</span>
     </a>
     <ul class="nav-links">
-        <li><a href="index.html#features">Features</a></li>
-        <li><a href="index.html#how-it-works">How It Works</a></li>
-        <li><a href="index.html#match-types">Match Types</a></li>
-        <li><a href="support.html">Support</a></li>
-        <li><a href="index.html#download" class="nav-cta">Download App</a></li>
+        <li><a href="index.html#features" data-i18n="navFeatures">Features</a></li>
+        <li><a href="index.html#how-it-works" data-i18n="navHowItWorks">How It Works</a></li>
+        <li><a href="support.html" data-i18n="navSupport">Support</a></li>
+        <li><a href="index.html#download" class="nav-cta" data-i18n="navDownload">Download App</a></li>
     </ul>
-    <div class="hamburger" onclick="toggleMenu()" aria-label="Menu">
-        <span></span><span></span><span></span>
+    <div class="nav-right">
+        <button class="lang-btn" id="langBtn" onclick="toggleLang()">
+            <span class="lang-icon">🌐</span>
+            <span id="langBtnText">عربي</span>
+        </button>
+        <div class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </div>
     </div>
 </nav>
 <div class="mobile-menu" id="mobileMenu">
-    <a href="index.html#features" onclick="toggleMenu()">Features</a>
-    <a href="index.html#how-it-works" onclick="toggleMenu()">How It Works</a>
-    <a href="index.html#match-types" onclick="toggleMenu()">Match Types</a>
-    <a href="support.html" onclick="toggleMenu()">Support</a>
-    <a href="index.html#download" class="nav-cta" onclick="toggleMenu()">Download App</a>
+    <a href="index.html#features" onclick="toggleMenu()" data-i18n="navFeatures">Features</a>
+    <a href="index.html#how-it-works" onclick="toggleMenu()" data-i18n="navHowItWorks">How It Works</a>
+    <a href="support.html" onclick="toggleMenu()" data-i18n="navSupport">Support</a>
+    <a href="index.html#download" class="nav-cta" onclick="toggleMenu()" data-i18n="navDownload">Download App</a>
+    <a href="#" onclick="toggleLang(); toggleMenu(); return false;" id="mobLangLink" style="color: var(--purple); font-weight: 600;">عربي</a>
 </div>
 
 
 <section class="page-hero">
     <div class="page-hero-inner">
         <img src="applogo.png" alt="Weino Logo">
-        <h1>Privacy Policy</h1>
-        <p>Last Updated: December 29, 2024</p>
-        <a href="index.html">← Back to Home</a>
+        <h1 data-i18n="pageTitle">Privacy Policy</h1>
+        <p data-i18n="pageSubtitle">Last Updated: December 29, 2024</p>
+        <a href="index.html" class="back-home-btn" data-i18n="backHome">← Back to Home</a>
     </div>
 </section>
 
-<div class="page-content">
+<div class="page-content" id="contentEn">
 
 <div class="highlight">
             <strong>Your Privacy Matters</strong><br>
@@ -476,6 +517,222 @@
     
 </div>
 
+<div class="page-content" id="contentAr" style="display:none;">
+
+<div class="highlight">
+    <strong>خصوصيتك تهمنا</strong><br>
+    تلتزم Weino بحماية خصوصيتك. توضح هذه السياسة كيفية جمع معلوماتك واستخدامها وحمايتها.
+</div>
+
+<h2>1. المعلومات التي نجمعها</h2>
+
+<h3>1.1 معلومات الحساب</h3>
+<p>عند إنشاء حساب Weino، نجمع:</p>
+<ul>
+    <li>عنوان البريد الإلكتروني</li>
+    <li>اسم المستخدم</li>
+    <li>كلمة المرور (مشفرة وآمنة)</li>
+    <li>صورة الملف الشخصي (اختيارية، مخزنة بأمان) - لا نصل إلى صور الملف الشخصي إلا عند اختيارك تحميلها صراحةً. لا نصل إلى أي صور أخرى على جهازك.</li>
+    <li>الدولة والمنطقة الزمنية (للجدولة الدقيقة)</li>
+    <li>تفضيل اللغة (العربية، الإنجليزية، الألمانية)</li>
+    <li>منصة الجهاز (iOS، Android) للتحليلات والتحسين</li>
+    <li>مزود المصادقة (البريد الإلكتروني، Google، Apple)</li>
+</ul>
+
+<h3>1.2 بيانات التقويم والتوفر</h3>
+<p>لتقديم خدمات الجدولة، نجمع:</p>
+<ul>
+    <li>فترات توفرك وأوقات فراغك</li>
+    <li>أنماط التوفر المتكررة (إذا تم تفعيلها)</li>
+    <li>دعوات المطابقة (الشخصية والجماعية)</li>
+    <li>قبول المطابقات ورفضها وحالتها</li>
+    <li>رسائل التوفر المخصصة (إذا تم ضبطها)</li>
+    <li>تفضيلات مدة المطابقة (15، 30، 45، 60 دقيقة)</li>
+    <li>الفترات الزمنية المشتركة مع الأصدقاء (فقط عند قبول المطابقات)</li>
+</ul>
+
+<h3>1.3 المعلومات الاجتماعية</h3>
+<ul>
+    <li>اتصالات الصداقة وطلباتها (المعلقة والمقبولة والمرفوضة)</li>
+    <li>سجل المطابقات مع مستخدمين آخرين</li>
+    <li>الرسائل والمحادثات داخل خيوط المطابقة</li>
+    <li>محتوى الرسائل والطوابع الزمنية ومعلومات المرسل</li>
+    <li>مؤشرات الكتابة (مؤقتة، غير مخزنة)</li>
+    <li>الإشعارات والاتصالات داخل التطبيق</li>
+    <li>إعدادات خصوصية الملف الشخصي</li>
+</ul>
+
+<h3>1.4 بيانات الاستخدام</h3>
+<ul>
+    <li>أنماط استخدام التطبيق والميزات المستخدمة</li>
+    <li>معلومات الجهاز (إصدار نظام التشغيل، إصدار التطبيق، طراز الجهاز)</li>
+    <li>معلومات المنصة (iOS أو Android)</li>
+    <li>طابع زمني لآخر نشاط</li>
+    <li>تقارير الأعطال وسجلات الأخطاء</li>
+    <li>مقاييس أداء التطبيق</li>
+</ul>
+
+<h3>1.5 بيانات المصادقة</h3>
+<p>إذا سجّلت الدخول باستخدام Google أو Apple:</p>
+<ul>
+    <li>نستلم اسمك وعنوان بريدك الإلكتروني</li>
+    <li>لا نصل إلى Google Calendar أو Apple Calendar الخاص بك</li>
+    <li>لا نصل إلى أي بيانات أخرى من هذه الحسابات</li>
+    <li>تُدار رموز OAuth بأمان وتُستخدم للمصادقة فقط</li>
+</ul>
+
+<h3>1.6 بيانات الإشعارات الفورية</h3>
+<p>تُستخدم الإشعارات الفورية حصرياً للاتصالات المتعلقة بالخدمة:</p>
+<ul>
+    <li>رمز Firebase Cloud Messaging (FCM) للإشعارات الفورية</li>
+    <li>تفضيلات الإشعارات وإعداداتها</li>
+    <li>حالة تسليم الإشعارات</li>
+</ul>
+<p><strong>غرض الإشعارات الفورية:</strong> نرسل إشعارات فورية لإعلامك بطلبات الصداقة وقبولها، ودعوات المطابقة، وقبول المطابقات ورفضها وانتهاء صلاحيتها، والرسائل الجديدة في خيوط المطابقة، وتحديثات الحساب الهامة. لا نرسل إشعارات تسويقية أو ترويجية. يمكنك تعطيل الإشعارات الفورية في أي وقت من إعدادات جهازك.</p>
+
+<h3>1.7 بيانات الاشتراك المميز</h3>
+<p><strong>ملاحظة:</strong> الاشتراكات المميزة متاحة حالياً لأجهزة iOS فقط. لا تتوفر للمستخدمين على Android.</p>
+<p>لمستخدمي iOS الذين لديهم اشتراكات مميزة، نجمع:</p>
+<ul>
+    <li>حالة الاشتراك المميز ونوعه</li>
+    <li>تاريخ انتهاء الاشتراك (إن وجد)</li>
+    <li>بيانات التحقق من الشراء (تُعالَج بأمان عبر Apple)</li>
+    <li>طابع زمني لتفعيل الاشتراك المميز</li>
+</ul>
+
+<h3>1.8 بيانات الموقع (اختيارية)</h3>
+<p>مشاركة الموقع اختيارية ومعطّلة بشكل افتراضي:</p>
+<ul>
+    <li>إذا تم التفعيل، قد نجمع بيانات موقع تقريبية</li>
+    <li>تُستخدم بيانات الموقع فقط للميزات المستندة إلى الموقع</li>
+    <li>يمكنك تعطيل مشاركة الموقع في أي وقت من الإعدادات</li>
+</ul>
+
+<h2>2. كيف نستخدم معلوماتك</h2>
+<p>نستخدم معلوماتك من أجل:</p>
+<ul>
+    <li><strong>تقديم الخدمات الأساسية:</strong> مطابقة توفرك مع الأصدقاء وإرسال الإشعارات وتسهيل الجدولة والرسائل</li>
+    <li><strong>اتصالات الصداقة:</strong> إدارة طلبات الصداقة وقوائم الأصدقاء والاتصالات الاجتماعية</li>
+    <li><strong>إدارة المطابقات:</strong> إنشاء وإدارة وتتبع المطابقات الشخصية والجماعية</li>
+    <li><strong>الرسائل:</strong> تمكين محادثات الدردشة الفورية داخل خيوط المطابقة</li>
+    <li><strong>الإشعارات الفورية:</strong> إرسال إشعارات متعلقة بالخدمة حول المطابقات وطلبات الصداقة والرسائل والتحديثات الهامة. لا نرسل إشعارات تسويقية.</li>
+    <li><strong>الميزات المميزة:</strong> إدارة والتحقق من الاشتراكات المميزة (iOS فقط).</li>
+    <li><strong>تحسين تجربة المستخدم:</strong> تخصيص تجربتك وتحسين أداء التطبيق وفهم الاستخدام</li>
+    <li><strong>إدارة الحساب:</strong> التحقق من هويتك وإدارة إعدادات الحساب ومعالجة طلبات إعادة تعيين كلمة المرور</li>
+    <li><strong>الأمان:</strong> الكشف عن الاحتيال والإساءة ومشكلات الأمان ومنعها</li>
+    <li><strong>التحليلات:</strong> فهم كيفية تفاعل المستخدمين مع تطبيقنا وتحسين الميزات</li>
+    <li><strong>الإعلانات:</strong> عرض إعلانات ذات صلة للمستخدمين المجانيين (يرى مستخدمو Android إعلانات بغض النظر عن حالة الاشتراك)</li>
+</ul>
+
+<h2>3. مشاركة المعلومات</h2>
+
+<h3>3.1 مع مستخدمين آخرين</h3>
+<p>نشارك معلومات محدودة مع أصدقائك على Weino:</p>
+<ul>
+    <li>اسم مستخدمك وصورة ملفك الشخصي (وفقاً لإعدادات الخصوصية لديك)</li>
+    <li>دولتك (للتوعية بالمنطقة الزمنية)</li>
+    <li>أوقات التوفر المشتركة (فقط عند قبول مطابقة)</li>
+    <li>رسائل التوفر المخصصة (إذا قمت بضبطها)</li>
+    <li>الرسائل التي ترسلها في خيوط المطابقة</li>
+    <li>حالتك الإلكترونية/حالة الكتابة (مؤقتة، غير مخزنة)</li>
+</ul>
+
+<h3>3.2 مع أطراف ثالثة</h3>
+<p>لا نبيع معلوماتك الشخصية. نشارك البيانات فقط مع:</p>
+<ul>
+    <li><strong>Firebase (Google):</strong> للمصادقة وقاعدة البيانات والتخزين السحابي وخدمات الإشعارات الفورية.</li>
+    <li><strong>Google AdMob:</strong> لعرض الإعلانات. قد يجمع AdMob معرّفات الأجهزة وعناوين IP وبيانات الاستخدام لاستهداف الإعلانات وقياسها.</li>
+    <li><strong>تسجيل الدخول بـ Google:</strong> للمصادقة عند اختيار تسجيل الدخول بـ Google</li>
+    <li><strong>تسجيل الدخول بـ Apple:</strong> للمصادقة عند اختيار تسجيل الدخول بـ Apple</li>
+    <li><strong>TikTok SDK (ByteDance):</strong> نستخدم TikTok Business SDK للتحليلات وقياس الإعلانات.</li>
+    <li><strong>متاجر التطبيقات:</strong> Apple App Store وGoogle Play Store لتوزيع التطبيق والمشتريات داخله.</li>
+</ul>
+
+<h3>3.3 المتطلبات القانونية</h3>
+<p>قد نُفصح عن المعلومات إذا طلب القانون أو أمر المحكمة ذلك، أو لحماية حقوق أو ممتلكات أو سلامة Weino ومستخدمينا أو الآخرين.</p>
+
+<h2>4. تخزين البيانات وأمانها</h2>
+<ul>
+    <li><strong>التشفير:</strong> جميع البيانات مشفرة أثناء النقل باستخدام HTTPS/TLS. البيانات الحساسة مشفرة أيضاً في حالة السكون.</li>
+    <li><strong>التخزين السحابي:</strong> تُخزَّن البيانات بأمان على خوادم Google Firebase</li>
+    <li><strong>أمان كلمة المرور:</strong> تُشفَّر كلمات المرور باستخدام bcrypt ولا تُخزَّن كنص عادي.</li>
+    <li><strong>التحكم في الوصول:</strong> ضوابط وصول داخلية صارمة لبياناتك.</li>
+    <li><strong>أمان الرسائل:</strong> تُخزَّن الرسائل بأمان ولا يمكن الوصول إليها إلا للمشاركين في خيط المطابقة</li>
+    <li><strong>مراجعات أمنية منتظمة:</strong> نراجع ونحدّث ممارساتنا الأمنية بانتظام</li>
+</ul>
+
+<h2>5. ملفات تعريف الارتباط وتقنيات التتبع</h2>
+<p>تستخدم Weino التقنيات التالية:</p>
+<ul>
+    <li><strong>Firebase Analytics:</strong> نستخدمه لفهم استخدام التطبيق وتحسين خدماتنا.</li>
+    <li><strong>AdMob SDK:</strong> عند عرض الإعلانات، يستخدم AdMob معرّفات الأجهزة وتقنيات التتبع.</li>
+    <li><strong>TikTok Business SDK:</strong> نستخدمه للتحليلات وقياس الإعلانات.</li>
+    <li><strong>التخزين المحلي:</strong> نستخدم التخزين المحلي على الجهاز لتخزين بيانات التطبيق مؤقتاً وتحسين الأداء.</li>
+    <li><strong>رموز الإشعارات الفورية:</strong> نخزّن رموز FCM لتسليم الإشعارات الفورية.</li>
+</ul>
+
+<h2>6. حقوقك وخياراتك</h2>
+
+<h3>6.1 الوصول والتحديث</h3>
+<p>يمكنك الوصول إلى معلومات حسابك وتحديثها في أي وقت من قسم الملف الشخصي في التطبيق.</p>
+
+<h3>6.2 حذف حسابك</h3>
+<p>يمكنك حذف حسابك بشكل دائم من الإعدادات &gt; حذف الحساب. سيؤدي ذلك إلى:</p>
+<ul>
+    <li>إزالة جميع معلوماتك الشخصية</li>
+    <li>حذف صورة ملفك الشخصي من خوادمنا</li>
+    <li>إلغاء جميع المطابقات المعلقة وطلبات الصداقة</li>
+    <li>إزالتك من قوائم الأصدقاء</li>
+    <li>حذف جميع رسائلك في خيوط المطابقة</li>
+    <li>إزالة بيانات توفرك</li>
+    <li>إلغاء أي اشتراكات مميزة نشطة (iOS فقط)</li>
+    <li>حذف رمز FCM وتعطيل الإشعارات الفورية</li>
+</ul>
+<p><strong>ملاحظة:</strong> قد تبقى بعض المعلومات في النسخ الاحتياطية لمدة تصل إلى 90 يوماً، وستُحذف نهائياً بعد ذلك.</p>
+
+<h3>6.3 إلغاء الاشتراك في الإعلانات</h3>
+<p>يختلف عرض الإعلانات حسب المنصة:</p>
+<ul>
+    <li><strong>iOS:</strong> قم بالترقية إلى Weino Premium لإزالة جميع الإعلانات.</li>
+    <li><strong>Android:</strong> تُعرض الإعلانات لجميع المستخدمين. الاشتراكات المميزة غير متاحة على Android حالياً.</li>
+</ul>
+
+<h3>6.4 الاتصالات التسويقية</h3>
+<p>لا نرسل رسائل بريد إلكتروني تسويقية. جميع الاتصالات متعلقة بالخدمة (إشعارات المطابقة، تحديثات الحساب).</p>
+
+<h2>7. خصوصية الأطفال</h2>
+<p>لا يُخصَّص Weino للمستخدمين دون سن 13 عاماً. لا نجمع معلومات عن الأطفال دون 13 عاماً عن قصد. إذا كنت تعتقد أن طفلاً قدّم لنا معلومات شخصية، يرجى التواصل معنا على <a href="mailto:amarhaikal208@gmail.com" style="color:#7C3AED;">amarhaikal208@gmail.com</a>.</p>
+
+<h2>8. نقل البيانات الدولي</h2>
+<p>قد تُنقَل معلوماتك وتُعالَج في دول غير دولتك. نضمن وجود ضمانات مناسبة لحماية بياناتك وفقاً لسياسة الخصوصية هذه.</p>
+
+<h2>9. الاحتفاظ بالبيانات</h2>
+<ul>
+    <li><strong>الحسابات النشطة:</strong> نحتفظ ببياناتك طالما حسابك نشط وتستخدم الخدمة</li>
+    <li><strong>الحسابات غير النشطة:</strong> قد تُؤرشَف الحسابات غير النشطة لأكثر من عام</li>
+    <li><strong>الحسابات المحذوفة:</strong> تُحذف البيانات نهائياً خلال 30 يوماً من طلب حذف الحساب</li>
+    <li><strong>الرسائل:</strong> تُحتفظ بالرسائل في خيوط المطابقة طالما المطابقة نشطة</li>
+    <li><strong>النسخ الاحتياطية:</strong> تُحذف النسخ الاحتياطية خلال 90 يوماً من حذف الحساب</li>
+    <li><strong>بيانات التحليلات:</strong> قد تُحتفظ ببيانات التحليلات المجمّعة والمجهولة الهوية لفترة أطول</li>
+</ul>
+
+<h2>10. تغييرات هذه السياسة</h2>
+<p>قد نحدّث سياسة الخصوصية هذه من وقت لآخر. سنخطرك بالتغييرات الجوهرية عبر التطبيق أو البريد الإلكتروني. استمرارك في استخدام Weino بعد التغييرات يُعدّ قبولاً للسياسة المحدّثة.</p>
+
+<h2>11. تواصل معنا</h2>
+<p>إذا كان لديك أسئلة حول سياسة الخصوصية هذه أو بياناتك، يرجى التواصل معنا:</p>
+<ul>
+    <li><strong>البريد الإلكتروني:</strong> <a href="mailto:amarhaikal208@gmail.com" style="color:#7C3AED;">amarhaikal208@gmail.com</a></li>
+    <li><strong>الدعم:</strong> <a href="support.html" style="color:#7C3AED;">زيارة صفحة الدعم</a></li>
+</ul>
+
+<div class="highlight" style="margin-top:40px;">
+    <strong>هل لديك أسئلة؟</strong><br>
+    نحن هنا للمساعدة. راسلنا على amarhaikal208@gmail.com في أي وقت.
+</div>
+
+</div>
+
 <footer>
     <div class="footer-inner">
         <div class="footer-top">
@@ -512,9 +769,40 @@
     </div>
 </footer>
 <script>
-function toggleMenu() {
-    document.getElementById('mobileMenu').classList.toggle('open');
+let currentLang = localStorage.getItem('weino_lang') || 'en';
+const translations = {
+    navFeatures:   { en: 'Features',       ar: 'الميزات' },
+    navHowItWorks: { en: 'How It Works',   ar: 'كيف يعمل' },
+    navSupport:    { en: 'Support',        ar: 'الدعم' },
+    navDownload:   { en: 'Download App',   ar: 'تحميل التطبيق' },
+    backHome:      { en: '← Back to Home', ar: '→ العودة للرئيسية' },
+    pageTitle:     { en: 'Privacy Policy', ar: 'سياسة الخصوصية' },
+    pageSubtitle:  { en: 'Last Updated: December 29, 2024', ar: 'آخر تحديث: 29 ديسمبر 2024' },
+};
+
+function setLang(lang) {
+    currentLang = lang;
+    localStorage.setItem('weino_lang', lang);
+    document.documentElement.lang = lang;
+    document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+    document.body.style.fontFamily = lang === 'ar'
+        ? "'Cairo', 'Segoe UI', sans-serif"
+        : "'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif";
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.dataset.i18n;
+        if (translations[key]?.[lang] !== undefined) el.textContent = translations[key][lang];
+    });
+    const btn = document.getElementById('langBtnText');
+    if (btn) btn.textContent = lang === 'ar' ? 'English' : 'عربي';
+    const mob = document.getElementById('mobLangLink');
+    if (mob) mob.textContent = lang === 'ar' ? 'English' : 'عربي';
+    const enBlock = document.getElementById('contentEn');
+    const arBlock = document.getElementById('contentAr');
+    if (enBlock) enBlock.style.display = lang === 'ar' ? 'none' : 'block';
+    if (arBlock) arBlock.style.display = lang === 'ar' ? 'block' : 'none';
 }
+function toggleLang() { setLang(currentLang === 'en' ? 'ar' : 'en'); }
+function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
 document.addEventListener('click', function(e) {
     const menu = document.getElementById('mobileMenu');
     const hb = document.querySelector('.hamburger');
@@ -522,6 +810,7 @@ document.addEventListener('click', function(e) {
         menu.classList.remove('open');
     }
 });
+setLang(currentLang);
 </script>
 
 </body>

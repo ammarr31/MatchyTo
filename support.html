@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Support & FAQ - Weino</title>
     <link rel="icon" type="image/png" href="applogo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900&family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <style>
 
         :root {
@@ -27,7 +30,7 @@
         html { scroll-behavior: smooth; }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Inter', Arial, sans-serif;
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             color: var(--text-dark);
             background: var(--bg);
             overflow-x: hidden;
@@ -43,7 +46,7 @@
             display: flex; align-items: center; justify-content: space-between;
         }
         .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-        .nav-logo img { width: 38px; height: 38px; border-radius: 10px; object-fit: contain; }
+        .nav-logo img { width: 38px; height: 38px; border-radius: 10px; object-fit: cover; background: var(--purple); }
         .nav-logo span {
             font-size: 22px; font-weight: 800;
             background: linear-gradient(135deg, var(--purple), var(--purple-light));
@@ -107,6 +110,22 @@
             border-left: 4px solid var(--purple); border-radius: 8px; margin: 20px 0;
         }
         .highlight p, .highlight li { color: var(--text-dark); margin-bottom: 0; }
+
+        .contact-box {
+            background: linear-gradient(135deg, rgba(124,58,237,0.07), rgba(167,139,250,0.05));
+            border-left: 4px solid var(--purple); border-radius: 12px;
+            padding: 24px; margin: 24px 0;
+        }
+        .contact-box h3 { color: var(--text-dark); margin-bottom: 8px; font-size: 17px; }
+        .contact-box p  { color: var(--text-mid); margin-bottom: 0; }
+        .ticket-path {
+            display: inline-block;
+            background: var(--purple); color: white;
+            padding: 9px 20px; border-radius: 24px;
+            font-weight: 700; font-size: 14px; margin-top: 14px;
+            letter-spacing: 0.2px;
+        }
+        html[dir="rtl"] .contact-box { border-left: none; border-right: 4px solid var(--purple); }
 
         .warning-box {
             background: rgba(251, 191, 36, 0.1); padding: 20px;
@@ -184,6 +203,39 @@
         .footer-bottom a { color: #9CA3AF; text-decoration: none; font-size: 14px; margin-left: 20px; transition: color 0.2s; }
         .footer-bottom a:hover { color: white; }
 
+        /* NAV RIGHT / LANG BTN */
+        .nav-right { display: flex; align-items: center; gap: 12px; }
+        .lang-btn {
+            display: flex; align-items: center; gap: 6px;
+            background: transparent; border: 1.5px solid var(--purple);
+            border-radius: var(--radius-full); padding: 7px 16px;
+            color: var(--purple); font-size: 14px; font-weight: 600;
+            cursor: pointer; transition: all 0.2s; white-space: nowrap; font-family: inherit;
+        }
+        .lang-btn:hover { background: var(--purple); color: white; }
+
+        /* BACK HOME BUTTON */
+        .back-home-btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(255,255,255,0.15); border: 1.5px solid rgba(255,255,255,0.35);
+            border-radius: var(--radius-full); padding: 10px 22px;
+            color: white !important; text-decoration: none; font-size: 14px; font-weight: 600;
+            margin-top: 20px; transition: all 0.2s; backdrop-filter: blur(8px);
+        }
+        .back-home-btn:hover { background: rgba(255,255,255,0.28); border-color: rgba(255,255,255,0.6); transform: translateY(-1px); }
+
+        /* RTL SUPPORT */
+        html[dir="rtl"] body { font-family: 'Cairo', 'Segoe UI', sans-serif; }
+        html[dir="rtl"] .page-hero h1 { letter-spacing: 0; }
+        html[dir="rtl"] .highlight { border-left: none; border-right: 4px solid var(--purple); }
+        html[dir="rtl"] .warning-box { border-left: none; border-right: 4px solid #F59E0B; }
+        html[dir="rtl"] .critical-box { border-left: none; border-right: 4px solid #EF4444; }
+        html[dir="rtl"] ul { margin-left: 0; margin-right: 22px; }
+        html[dir="rtl"] .step-list li { padding: 20px 60px 20px 20px; }
+        html[dir="rtl"] .step-list li::before { left: auto; right: 16px; }
+        html[dir="rtl"] .footer-col h4 { letter-spacing: 0; }
+        html[dir="rtl"] .footer-bottom a { margin-left: 0; margin-right: 20px; }
+
         @media (max-width: 768px) {
             .nav-links { display: none; }
             .hamburger { display: flex; }
@@ -202,35 +254,40 @@
         <span>Weino</span>
     </a>
     <ul class="nav-links">
-        <li><a href="index.html#features">Features</a></li>
-        <li><a href="index.html#how-it-works">How It Works</a></li>
-        <li><a href="index.html#match-types">Match Types</a></li>
-        <li><a href="support.html">Support</a></li>
-        <li><a href="index.html#download" class="nav-cta">Download App</a></li>
+        <li><a href="index.html#features" data-i18n="navFeatures">Features</a></li>
+        <li><a href="index.html#how-it-works" data-i18n="navHowItWorks">How It Works</a></li>
+        <li><a href="support.html" data-i18n="navSupport">Support</a></li>
+        <li><a href="index.html#download" class="nav-cta" data-i18n="navDownload">Download App</a></li>
     </ul>
-    <div class="hamburger" onclick="toggleMenu()" aria-label="Menu">
-        <span></span><span></span><span></span>
+    <div class="nav-right">
+        <button class="lang-btn" id="langBtn" onclick="toggleLang()">
+            <span class="lang-icon">🌐</span>
+            <span id="langBtnText">عربي</span>
+        </button>
+        <div class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </div>
     </div>
 </nav>
 <div class="mobile-menu" id="mobileMenu">
-    <a href="index.html#features" onclick="toggleMenu()">Features</a>
-    <a href="index.html#how-it-works" onclick="toggleMenu()">How It Works</a>
-    <a href="index.html#match-types" onclick="toggleMenu()">Match Types</a>
-    <a href="support.html" onclick="toggleMenu()">Support</a>
-    <a href="index.html#download" class="nav-cta" onclick="toggleMenu()">Download App</a>
+    <a href="index.html#features" onclick="toggleMenu()" data-i18n="navFeatures">Features</a>
+    <a href="index.html#how-it-works" onclick="toggleMenu()" data-i18n="navHowItWorks">How It Works</a>
+    <a href="support.html" onclick="toggleMenu()" data-i18n="navSupport">Support</a>
+    <a href="index.html#download" class="nav-cta" onclick="toggleMenu()" data-i18n="navDownload">Download App</a>
+    <a href="#" onclick="toggleLang(); toggleMenu(); return false;" id="mobLangLink" style="color: var(--purple); font-weight: 600;">عربي</a>
 </div>
 
 
 <section class="page-hero">
     <div class="page-hero-inner">
         <img src="applogo.png" alt="Weino Logo">
-        <h1>Support & FAQ</h1>
-        <p>Find answers or get in touch with us</p>
-        <a href="index.html">← Back to Home</a>
+        <h1 data-i18n="pageTitle">Support &amp; FAQ</h1>
+        <p data-i18n="pageSubtitle">Find answers or get in touch with us</p>
+        <a href="index.html" class="back-home-btn" data-i18n="backHome">← Back to Home</a>
     </div>
 </section>
 
-<div class="page-content">
+<div class="page-content" id="contentEn">
 
 <h2>📖 Frequently Asked Questions</h2>
 
@@ -365,7 +422,7 @@
         </div>
 
         <h2>🐛 Reporting Issues</h2>
-        <p>Found a bug or something not working correctly? Please email us with:</p>
+        <p>Found a bug or something not working correctly? Submit a support ticket from inside the app, including:</p>
         <ul>
             <li>Your device type (iPhone, Android, etc.)</li>
             <li>App version (found in Settings)</li>
@@ -374,10 +431,9 @@
         </ul>
 
         <div class="contact-box">
-            <h3>Still Need Help?</h3>
-            <p>We typically respond within 24 hours</p>
-            <br>
-            <a href="mailto:amarhaikal208@gmail.com" class="contact-email">amarhaikal208@gmail.com</a>
+            <h3>🎫 Still Need Help?</h3>
+            <p>Submit a support ticket directly from the app — we typically respond within 24 hours.</p>
+            <span class="ticket-path">⚙️ Settings &nbsp;→&nbsp; Support &nbsp;→&nbsp; Submit a Ticket</span>
         </div>
 
         <h2>💡 Tips & Best Practices</h2>
@@ -389,6 +445,166 @@
             <li><strong>Check notifications:</strong> Enable push notifications so you never miss a match request or reminder</li>
         </ul>
     
+</div>
+
+<div class="page-content" id="contentAr" style="display:none;">
+
+<h2>📖 الأسئلة الشائعة</h2>
+
+<div class="faq-item">
+    <div class="faq-question">كيف أضيف وقت فراغي؟</div>
+    <div class="faq-answer">
+        اذهب إلى تبويب التقويم واضغط على زر "+". اختر اليوم والنطاق الزمني الذي تكون فيه متاحاً. ستتكرر توفريتك أسبوعياً حتى تغيّرها.
+    </div>
+</div>
+
+<div class="faq-item">
+    <div class="faq-question">كيف أجد أوقات مشتركة مع أصدقائي؟</div>
+    <div class="faq-answer">
+        أضف أصدقاءك أولاً من تبويب الأصدقاء. ثم اذهب إلى المطابقات واضغط على "إنشاء مطابقة". اختر الصديق أو الأصدقاء الذين تريد مقابلتهم، وستعرض Weino تلقائياً جميع الأوقات المشتركة المتاحة.
+    </div>
+</div>
+
+<div class="faq-item">
+    <div class="faq-question">كيف يعمل تحويل المناطق الزمنية؟</div>
+    <div class="faq-answer">
+        تحوّل Weino تلقائياً جميع الأوقات إلى المنطقة الزمنية المحلية لكل مستخدم. عندما ترى وقت مطابقة، يُعرض دائماً بتوقيتك المحلي. يرى أصدقاؤك المطابقة ذاتها بتوقيتهم المحلي. يتولى التطبيق جميع التحويلات تلقائياً!
+    </div>
+</div>
+
+<div class="faq-item">
+    <div class="faq-question">هل يمكنني تغيير دولتي أو منطقتي الزمنية؟</div>
+    <div class="faq-answer">
+        نعم! اذهب إلى الملف الشخصي &gt; الدولة لتغييرها. ملاحظة: تغيير منطقتك الزمنية سيلغي تلقائياً جميع المطابقات المعلقة، لأن الأوقات قد لا تكون متوافقة بعد ذلك.
+    </div>
+</div>
+
+<div class="faq-item">
+    <div class="faq-question">ماذا يحدث عندما أقبل مطابقة؟</div>
+    <div class="faq-answer">
+        عند قبول مطابقة، يُحجز ذلك الوقت ولن يكون متاحاً لمطابقات أخرى. ستتلقى تذكيراً بالإشعار قبل موعد اللقاء المجدول.
+    </div>
+</div>
+
+<div class="faq-item">
+    <div class="faq-question">هل يمكنني إنشاء مطابقات مع عدة أشخاص؟</div>
+    <div class="faq-answer">
+        نعم! مطابقات المجموعة متاحة لجميع المستخدمين. عند إنشاء مطابقة، اختر عدة أصدقاء وستجد Weino الأوقات التي يكون فيها الجميع متاحاً.
+    </div>
+</div>
+
+<div class="faq-item">
+    <div class="faq-question">ما الذي يتضمنه Weino Premium؟</div>
+    <div class="faq-answer">
+        يزيل Premium جميع الإعلانات ويمنحك: شارة مميزة، طلبات مطابقة ذات أولوية، رسائل توفر مخصصة، وعرض مناطق زمنية متعددة. تحصل أيضاً على فترات تقويم غير محدودة وسجل مطابقات مدى الحياة.
+    </div>
+</div>
+
+<div class="faq-item">
+    <div class="faq-question">كيف أُلغي اشتراكي في Premium؟</div>
+    <div class="faq-answer">
+        اذهب إلى إعدادات متجر التطبيقات (App Store لـ iOS) أو Google Play على جهازك، ابحث عن "الاشتراكات"، اختر Weino واضغط إلغاء. ستحتفظ بمزايا Premium حتى نهاية فترة الفوترة.
+    </div>
+</div>
+
+<div class="faq-item">
+    <div class="faq-question">لماذا لا أجد أوقاتاً مشتركة مع صديقي؟</div>
+    <div class="faq-answer">
+        يحدث هذا عندما لا تتقاطع جداولكما. تأكد أن كليكما أضاف فترات وقت فراغ. إذا كنتما في مناطق زمنية مختلفة، تذكر أن التطبيق يقارن الأوقات في كلا التوقيتين. تحقق أيضاً أن أحدكما لم يحجز ذلك الوقت لمطابقة أخرى.
+    </div>
+</div>
+
+<div class="faq-item">
+    <div class="faq-question">كيف أعيد تعيين كلمة المرور؟</div>
+    <div class="faq-answer">
+        في شاشة تسجيل الدخول، اضغط "نسيت كلمة المرور؟". أدخل بريدك الإلكتروني وستتلقى رابط إعادة تعيين كلمة المرور من Firebase Authentication.
+    </div>
+</div>
+
+<div class="faq-item">
+    <div class="faq-question">هل يمكنني استخدام حسابات متعددة؟</div>
+    <div class="faq-answer">
+        يجب أن يكون لكل شخص حساب واحد فعّال فقط. لا يُسمح بحسابات متعددة للشخص الواحد وقد يؤدي ذلك إلى تعليق الحساب.
+    </div>
+</div>
+
+<div class="faq-item">
+    <div class="faq-question">كيف أحذف حسابي؟</div>
+    <div class="faq-answer">
+        اذهب إلى الملف الشخصي &gt; الإعدادات &gt; حذف الحساب. هذا الإجراء دائم وسيحذف جميع بياناتك بما فيها المطابقات والأصدقاء والتوفر. لا يمكن التراجع عنه.
+    </div>
+</div>
+
+<div class="faq-item">
+    <div class="faq-question">لا أتلقى إشعارات المطابقة. ماذا أفعل؟</div>
+    <div class="faq-answer">
+        تأكد من تفعيل الإشعارات في إعدادات جهازك لتطبيق Weino. اذهب إلى إعدادات الجهاز &gt; الإشعارات &gt; Weino وفعّل الإشعارات.
+    </div>
+</div>
+
+<div class="faq-item">
+    <div class="faq-question">هل يمكنني تصدير جدولي إلى Google Calendar أو Apple Calendar؟</div>
+    <div class="faq-answer">
+        تصدير التقويم غير متاح حالياً. يمكنك مشاهدة جميع مطابقاتك في تبويب المطابقات وضبط تذكيرات داخل التطبيق.
+    </div>
+</div>
+
+<h2>🔒 الخصوصية والأمان</h2>
+
+<div class="faq-item">
+    <div class="faq-question">هل بياناتي آمنة؟</div>
+    <div class="faq-answer">
+        نعم! جميع البيانات مشفرة أثناء النقل ومخزنة بأمان على خوادم Google Firebase. لا نبيع معلوماتك الشخصية أبداً. اقرأ <a href="privacy-policy.html" style="color:#7C3AED;">سياسة الخصوصية</a> للتفاصيل.
+    </div>
+</div>
+
+<div class="faq-item">
+    <div class="faq-question">من يمكنه رؤية توفريتي؟</div>
+    <div class="faq-answer">
+        فقط أصدقاؤك المقبولون يمكنهم رؤية الأوقات المشتركة عندما تختار إنشاء مطابقة معهم. جدولك الكامل خاص ولا يُشارَك أبداً دون إذنك.
+    </div>
+</div>
+
+<h2>💳 الفوترة والاشتراكات</h2>
+
+<div class="faq-item">
+    <div class="faq-question">كم يكلف Premium؟</div>
+    <div class="faq-answer">
+        تختلف الأسعار حسب المنطقة وتُعرض داخل التطبيق. نقدم خيارات اشتراك شهري وسنوي. تحقق من شاشة Premium في التطبيق لمعرفة الأسعار الحالية.
+    </div>
+</div>
+
+<div class="faq-item">
+    <div class="faq-question">هل يمكنني الحصول على استرداد؟</div>
+    <div class="faq-answer">
+        تتولى عمليات الاسترداد Apple أو Google حسب مكان الشراء. تواصل مع دعمهم مباشرةً أو اطلب الاسترداد عبر حساب App Store أو Google Play.
+    </div>
+</div>
+
+<h2>🐛 الإبلاغ عن مشاكل</h2>
+<p>وجدت خللاً أو شيئاً لا يعمل بشكل صحيح؟ أرسل طلب دعم من داخل التطبيق، مع تضمين:</p>
+<ul>
+    <li>نوع جهازك (iPhone، Android، إلخ)</li>
+    <li>إصدار التطبيق (يوجد في الإعدادات)</li>
+    <li>وصف المشكلة</li>
+    <li>لقطات الشاشة إن أمكن</li>
+</ul>
+
+<div class="contact-box" style="margin-top:20px;">
+    <h3>🎫 هل ما زلت بحاجة إلى مساعدة؟</h3>
+    <p>أرسل طلب دعم مباشرةً من التطبيق وسنرد عليك خلال 24 ساعة.</p>
+    <span class="ticket-path">⚙️ الإعدادات &nbsp;←&nbsp; الدعم &nbsp;←&nbsp; إرسال طلب</span>
+</div>
+
+<h2>💡 نصائح وأفضل الممارسات</h2>
+<ul>
+    <li><strong>حدّث جدولك بانتظام:</strong> حدّث فترات وقت فراغك باستمرار لضمان دقة المطابقات</li>
+    <li><strong>اقبل المطابقات فوراً:</strong> يمكن لأشخاص متعددين المطالبة بنفس الفترة حتى يتم قبولها</li>
+    <li><strong>اضبط رسائل مخصصة:</strong> يمكن لمستخدمي Premium إضافة سياق للتوفر (مثال: "متاح لجلسات القهوة")</li>
+    <li><strong>استخدم مطابقات المجموعة بحكمة:</strong> إيجاد أوقات لمجموعات كبيرة قد يكون صعباً؛ حاول إبقاء المجموعات بين 3-5 أشخاص</li>
+    <li><strong>فعّل الإشعارات:</strong> فعّل الإشعارات الفورية حتى لا تفوتك أي طلب مطابقة أو تذكير</li>
+</ul>
+
 </div>
 
 <footer>
@@ -412,7 +628,7 @@
                 <h4>Help</h4>
                 <ul>
                     <li><a href="support.html">Support &amp; FAQ</a></li>
-                    <li><a href="mailto:amarhaikal208@gmail.com">Contact Us</a></li>
+                    <li><a href="support.html">Contact Us</a></li>
                 </ul>
             </div>
         </div>
@@ -427,9 +643,40 @@
     </div>
 </footer>
 <script>
-function toggleMenu() {
-    document.getElementById('mobileMenu').classList.toggle('open');
+let currentLang = localStorage.getItem('weino_lang') || 'en';
+const translations = {
+    navFeatures:   { en: 'Features',       ar: 'الميزات' },
+    navHowItWorks: { en: 'How It Works',   ar: 'كيف يعمل' },
+    navSupport:    { en: 'Support',        ar: 'الدعم' },
+    navDownload:   { en: 'Download App',   ar: 'تحميل التطبيق' },
+    backHome:      { en: '← Back to Home', ar: '→ العودة للرئيسية' },
+    pageTitle:     { en: 'Support & FAQ',  ar: 'الدعم والأسئلة الشائعة' },
+    pageSubtitle:  { en: 'Find answers or get in touch with us', ar: 'ابحث عن إجابات أو تواصل معنا' },
+};
+
+function setLang(lang) {
+    currentLang = lang;
+    localStorage.setItem('weino_lang', lang);
+    document.documentElement.lang = lang;
+    document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+    document.body.style.fontFamily = lang === 'ar'
+        ? "'Cairo', 'Segoe UI', sans-serif"
+        : "'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif";
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.dataset.i18n;
+        if (translations[key]?.[lang] !== undefined) el.textContent = translations[key][lang];
+    });
+    const btn = document.getElementById('langBtnText');
+    if (btn) btn.textContent = lang === 'ar' ? 'English' : 'عربي';
+    const mob = document.getElementById('mobLangLink');
+    if (mob) mob.textContent = lang === 'ar' ? 'English' : 'عربي';
+    const enBlock = document.getElementById('contentEn');
+    const arBlock = document.getElementById('contentAr');
+    if (enBlock) enBlock.style.display = lang === 'ar' ? 'none' : 'block';
+    if (arBlock) arBlock.style.display = lang === 'ar' ? 'block' : 'none';
 }
+function toggleLang() { setLang(currentLang === 'en' ? 'ar' : 'en'); }
+function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
 document.addEventListener('click', function(e) {
     const menu = document.getElementById('mobileMenu');
     const hb = document.querySelector('.hamburger');
@@ -437,6 +684,7 @@ document.addEventListener('click', function(e) {
         menu.classList.remove('open');
     }
 });
+setLang(currentLang);
 </script>
 
 </body>

@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Delete Account - Weino</title>
     <link rel="icon" type="image/png" href="applogo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900&family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <style>
 
         :root {
@@ -27,7 +30,7 @@
         html { scroll-behavior: smooth; }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Inter', Arial, sans-serif;
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             color: var(--text-dark);
             background: var(--bg);
             overflow-x: hidden;
@@ -43,7 +46,7 @@
             display: flex; align-items: center; justify-content: space-between;
         }
         .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-        .nav-logo img { width: 38px; height: 38px; border-radius: 10px; object-fit: contain; }
+        .nav-logo img { width: 38px; height: 38px; border-radius: 10px; object-fit: cover; background: var(--purple); }
         .nav-logo span {
             font-size: 22px; font-weight: 800;
             background: linear-gradient(135deg, var(--purple), var(--purple-light));
@@ -184,6 +187,39 @@
         .footer-bottom a { color: #9CA3AF; text-decoration: none; font-size: 14px; margin-left: 20px; transition: color 0.2s; }
         .footer-bottom a:hover { color: white; }
 
+        /* NAV RIGHT / LANG BTN */
+        .nav-right { display: flex; align-items: center; gap: 12px; }
+        .lang-btn {
+            display: flex; align-items: center; gap: 6px;
+            background: transparent; border: 1.5px solid var(--purple);
+            border-radius: var(--radius-full); padding: 7px 16px;
+            color: var(--purple); font-size: 14px; font-weight: 600;
+            cursor: pointer; transition: all 0.2s; white-space: nowrap; font-family: inherit;
+        }
+        .lang-btn:hover { background: var(--purple); color: white; }
+
+        /* BACK HOME BUTTON */
+        .back-home-btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(255,255,255,0.15); border: 1.5px solid rgba(255,255,255,0.35);
+            border-radius: var(--radius-full); padding: 10px 22px;
+            color: white !important; text-decoration: none; font-size: 14px; font-weight: 600;
+            margin-top: 20px; transition: all 0.2s; backdrop-filter: blur(8px);
+        }
+        .back-home-btn:hover { background: rgba(255,255,255,0.28); border-color: rgba(255,255,255,0.6); transform: translateY(-1px); }
+
+        /* RTL SUPPORT */
+        html[dir="rtl"] body { font-family: 'Cairo', 'Segoe UI', sans-serif; }
+        html[dir="rtl"] .page-hero h1 { letter-spacing: 0; }
+        html[dir="rtl"] .highlight { border-left: none; border-right: 4px solid var(--purple); }
+        html[dir="rtl"] .warning-box { border-left: none; border-right: 4px solid #F59E0B; }
+        html[dir="rtl"] .critical-box { border-left: none; border-right: 4px solid #EF4444; }
+        html[dir="rtl"] ul { margin-left: 0; margin-right: 22px; }
+        html[dir="rtl"] .step-list li { padding: 20px 60px 20px 20px; }
+        html[dir="rtl"] .step-list li::before { left: auto; right: 16px; }
+        html[dir="rtl"] .footer-col h4 { letter-spacing: 0; }
+        html[dir="rtl"] .footer-bottom a { margin-left: 0; margin-right: 20px; }
+
         @media (max-width: 768px) {
             .nav-links { display: none; }
             .hamburger { display: flex; }
@@ -202,35 +238,40 @@
         <span>Weino</span>
     </a>
     <ul class="nav-links">
-        <li><a href="index.html#features">Features</a></li>
-        <li><a href="index.html#how-it-works">How It Works</a></li>
-        <li><a href="index.html#match-types">Match Types</a></li>
-        <li><a href="support.html">Support</a></li>
-        <li><a href="index.html#download" class="nav-cta">Download App</a></li>
+        <li><a href="index.html#features" data-i18n="navFeatures">Features</a></li>
+        <li><a href="index.html#how-it-works" data-i18n="navHowItWorks">How It Works</a></li>
+        <li><a href="support.html" data-i18n="navSupport">Support</a></li>
+        <li><a href="index.html#download" class="nav-cta" data-i18n="navDownload">Download App</a></li>
     </ul>
-    <div class="hamburger" onclick="toggleMenu()" aria-label="Menu">
-        <span></span><span></span><span></span>
+    <div class="nav-right">
+        <button class="lang-btn" id="langBtn" onclick="toggleLang()">
+            <span class="lang-icon">🌐</span>
+            <span id="langBtnText">عربي</span>
+        </button>
+        <div class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </div>
     </div>
 </nav>
 <div class="mobile-menu" id="mobileMenu">
-    <a href="index.html#features" onclick="toggleMenu()">Features</a>
-    <a href="index.html#how-it-works" onclick="toggleMenu()">How It Works</a>
-    <a href="index.html#match-types" onclick="toggleMenu()">Match Types</a>
-    <a href="support.html" onclick="toggleMenu()">Support</a>
-    <a href="index.html#download" class="nav-cta" onclick="toggleMenu()">Download App</a>
+    <a href="index.html#features" onclick="toggleMenu()" data-i18n="navFeatures">Features</a>
+    <a href="index.html#how-it-works" onclick="toggleMenu()" data-i18n="navHowItWorks">How It Works</a>
+    <a href="support.html" onclick="toggleMenu()" data-i18n="navSupport">Support</a>
+    <a href="index.html#download" class="nav-cta" onclick="toggleMenu()" data-i18n="navDownload">Download App</a>
+    <a href="#" onclick="toggleLang(); toggleMenu(); return false;" id="mobLangLink" style="color: var(--purple); font-weight: 600;">عربي</a>
 </div>
 
 
 <section class="page-hero">
     <div class="page-hero-inner">
         <img src="applogo.png" alt="Weino Logo">
-        <h1>Delete Account</h1>
-        <p>How to permanently delete your Weino account</p>
-        <a href="index.html">← Back to Home</a>
+        <h1 data-i18n="pageTitle">Delete Account</h1>
+        <p data-i18n="pageSubtitle">How to permanently delete your Weino account</p>
+        <a href="index.html" class="back-home-btn" data-i18n="backHome">← Back to Home</a>
     </div>
 </section>
 
-<div class="page-content">
+<div class="page-content" id="contentEn">
 
 <div class="warning">
             <strong>⚠️ Permanent Action</strong><br>
@@ -319,6 +360,80 @@
     
 </div>
 
+<div class="page-content" id="contentAr" style="display:none;">
+
+<div class="warning-box">
+    <strong>⚠️ إجراء دائم</strong><br>
+    حذف حسابك إجراء دائم ولا يمكن التراجع عنه. سيتم حذف جميع بياناتك نهائياً.
+</div>
+
+<h2>كيفية طلب حذف الحساب</h2>
+
+<ul class="step-list">
+    <li>
+        <strong>افتح تطبيق Weino</strong>
+        <p>شغّل تطبيق Weino على جهازك وتأكد من تسجيل دخولك.</p>
+    </li>
+    <li>
+        <strong>انتقل إلى الإعدادات</strong>
+        <p>اذهب إلى تبويب الملف الشخصي (شريط التنقل السفلي) واضغط على "الإعدادات" أو أيقونة الإعدادات.</p>
+    </li>
+    <li>
+        <strong>اختر حذف الحساب</strong>
+        <p>انزل للأسفل للعثور على خيار "حذف الحساب" واضغط عليه.</p>
+    </li>
+    <li>
+        <strong>تأكيد الحذف</strong>
+        <p>اقرأ رسالة التأكيد بعناية، ثم أكّد رغبتك في حذف حسابك بشكل دائم.</p>
+    </li>
+</ul>
+
+<h2>البيانات التي سيتم حذفها</h2>
+<p>عند حذف حساب Weino الخاص بك، سيتم حذف البيانات التالية بشكل دائم:</p>
+<ul>
+    <li><strong>معلومات الحساب:</strong> عنوان البريد الإلكتروني واسم المستخدم وكلمة المرور وبيانات المصادقة</li>
+    <li><strong>بيانات الملف الشخصي:</strong> صورة الملف الشخصي وجميع إعدادات الملف</li>
+    <li><strong>بيانات التقويم:</strong> جميع فترات توفرك ومعلومات التقويم</li>
+    <li><strong>الاتصالات الاجتماعية:</strong> جميع صلات الصداقة وطلبات الصداقة (المُرسلة والمستلمة)</li>
+    <li><strong>المطابقات:</strong> جميع المطابقات (المعلقة والمقبولة والمنتهية) التي أنشأتها أو شاركت فيها</li>
+    <li><strong>الرسائل:</strong> جميع الرسائل والمحادثات في خيوط المطابقة</li>
+    <li><strong>الإشعارات:</strong> سجل الإشعارات بالكامل</li>
+    <li><strong>التفضيلات:</strong> اللغة والدولة والمنطقة الزمنية وجميع إعدادات التطبيق</li>
+    <li><strong>رموز الإشعارات الفورية:</strong> رموز FCM للإشعارات الفورية</li>
+    <li><strong>الاشتراكات المميزة:</strong> سيتم إلغاء أي اشتراكات مميزة نشطة (iOS فقط - لا ينطبق على Android)</li>
+</ul>
+
+<h2>فترة الاحتفاظ بالبيانات</h2>
+<div class="highlight">
+    <p><strong>الحذف الفوري:</strong> يتم حذف معظم بياناتك فور طلب حذف الحساب.</p>
+    <p><strong>الاحتفاظ بالنسخ الاحتياطية:</strong> قد تبقى بعض المعلومات في أنظمة النسخ الاحتياطي لمدة تصل إلى <strong>90 يوماً</strong> لأغراض التعافي من الكوارث. بعد 90 يوماً يتم حذف جميع النسخ الاحتياطية نهائياً.</p>
+    <p><strong>بيانات التحليلات:</strong> قد يتم الاحتفاظ ببيانات التحليلات المجمّعة والمجهولة الهوية لفترة أطول لأغراض تحسين الخدمة.</p>
+</div>
+
+<h2>ماذا يحدث بعد الحذف</h2>
+<ul>
+    <li>ستُسجَّل خارج التطبيق فوراً</li>
+    <li>لن تتلقى أي إشعارات من Weino بعد الآن</li>
+    <li>سيصبح اسم المستخدم الخاص بك متاحاً لمستخدمين آخرين</li>
+    <li>ستحتاج إلى إنشاء حساب جديد إذا أردت استخدام Weino مستقبلاً</li>
+    <li>لا يمكن استعادة أي بيانات محذوفة</li>
+</ul>
+
+<h2>بديل: تواصل مع الدعم</h2>
+<p>إذا لم تتمكن من حذف حسابك عبر التطبيق، أو كان لديك أسئلة حول حذف الحساب، يمكنك التواصل معنا:</p>
+<ul>
+    <li><strong>البريد الإلكتروني:</strong> <a href="mailto:amarhaikal208@gmail.com" style="color:#7C3AED;">amarhaikal208@gmail.com</a></li>
+    <li><strong>صفحة الدعم:</strong> <a href="support.html" style="color:#7C3AED;">زيارة صفحة الدعم</a></li>
+</ul>
+<p>عند التواصل معنا، يرجى تضمين اسم المستخدم أو عنوان البريد الإلكتروني حتى نتمكن من تحديد حسابك.</p>
+
+<div class="highlight" style="margin-top:40px;">
+    <strong>هل تحتاج مساعدة؟</strong><br>
+    إذا كان لديك أسئلة أو تحتاج مساعدة بشأن حذف الحساب، راسلنا على amarhaikal208@gmail.com. نحن هنا للمساعدة.
+</div>
+
+</div>
+
 <footer>
     <div class="footer-inner">
         <div class="footer-top">
@@ -355,9 +470,40 @@
     </div>
 </footer>
 <script>
-function toggleMenu() {
-    document.getElementById('mobileMenu').classList.toggle('open');
+let currentLang = localStorage.getItem('weino_lang') || 'en';
+const translations = {
+    navFeatures:   { en: 'Features',       ar: 'الميزات' },
+    navHowItWorks: { en: 'How It Works',   ar: 'كيف يعمل' },
+    navSupport:    { en: 'Support',        ar: 'الدعم' },
+    navDownload:   { en: 'Download App',   ar: 'تحميل التطبيق' },
+    backHome:      { en: '← Back to Home', ar: '→ العودة للرئيسية' },
+    pageTitle:     { en: 'Delete Account', ar: 'حذف الحساب' },
+    pageSubtitle:  { en: 'How to permanently delete your Weino account', ar: 'كيفية حذف حسابك في Weino بشكل دائم' },
+};
+
+function setLang(lang) {
+    currentLang = lang;
+    localStorage.setItem('weino_lang', lang);
+    document.documentElement.lang = lang;
+    document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+    document.body.style.fontFamily = lang === 'ar'
+        ? "'Cairo', 'Segoe UI', sans-serif"
+        : "'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif";
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.dataset.i18n;
+        if (translations[key]?.[lang] !== undefined) el.textContent = translations[key][lang];
+    });
+    const btn = document.getElementById('langBtnText');
+    if (btn) btn.textContent = lang === 'ar' ? 'English' : 'عربي';
+    const mob = document.getElementById('mobLangLink');
+    if (mob) mob.textContent = lang === 'ar' ? 'English' : 'عربي';
+    const enBlock = document.getElementById('contentEn');
+    const arBlock = document.getElementById('contentAr');
+    if (enBlock) enBlock.style.display = lang === 'ar' ? 'none' : 'block';
+    if (arBlock) arBlock.style.display = lang === 'ar' ? 'block' : 'none';
 }
+function toggleLang() { setLang(currentLang === 'en' ? 'ar' : 'en'); }
+function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
 document.addEventListener('click', function(e) {
     const menu = document.getElementById('mobileMenu');
     const hb = document.querySelector('.hamburger');
@@ -365,6 +511,7 @@ document.addEventListener('click', function(e) {
         menu.classList.remove('open');
     }
 });
+setLang(currentLang);
 </script>
 
 </body>

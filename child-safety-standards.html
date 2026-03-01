@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Child Safety Standards - Weino</title>
     <link rel="icon" type="image/png" href="applogo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900&family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <style>
 
         :root {
@@ -27,7 +30,7 @@
         html { scroll-behavior: smooth; }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Inter', Arial, sans-serif;
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             color: var(--text-dark);
             background: var(--bg);
             overflow-x: hidden;
@@ -43,7 +46,7 @@
             display: flex; align-items: center; justify-content: space-between;
         }
         .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-        .nav-logo img { width: 38px; height: 38px; border-radius: 10px; object-fit: contain; }
+        .nav-logo img { width: 38px; height: 38px; border-radius: 10px; object-fit: cover; background: var(--purple); }
         .nav-logo span {
             font-size: 22px; font-weight: 800;
             background: linear-gradient(135deg, var(--purple), var(--purple-light));
@@ -184,6 +187,39 @@
         .footer-bottom a { color: #9CA3AF; text-decoration: none; font-size: 14px; margin-left: 20px; transition: color 0.2s; }
         .footer-bottom a:hover { color: white; }
 
+        /* NAV RIGHT / LANG BTN */
+        .nav-right { display: flex; align-items: center; gap: 12px; }
+        .lang-btn {
+            display: flex; align-items: center; gap: 6px;
+            background: transparent; border: 1.5px solid var(--purple);
+            border-radius: var(--radius-full); padding: 7px 16px;
+            color: var(--purple); font-size: 14px; font-weight: 600;
+            cursor: pointer; transition: all 0.2s; white-space: nowrap; font-family: inherit;
+        }
+        .lang-btn:hover { background: var(--purple); color: white; }
+
+        /* BACK HOME BUTTON */
+        .back-home-btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(255,255,255,0.15); border: 1.5px solid rgba(255,255,255,0.35);
+            border-radius: var(--radius-full); padding: 10px 22px;
+            color: white !important; text-decoration: none; font-size: 14px; font-weight: 600;
+            margin-top: 20px; transition: all 0.2s; backdrop-filter: blur(8px);
+        }
+        .back-home-btn:hover { background: rgba(255,255,255,0.28); border-color: rgba(255,255,255,0.6); transform: translateY(-1px); }
+
+        /* RTL SUPPORT */
+        html[dir="rtl"] body { font-family: 'Cairo', 'Segoe UI', sans-serif; }
+        html[dir="rtl"] .page-hero h1 { letter-spacing: 0; }
+        html[dir="rtl"] .highlight { border-left: none; border-right: 4px solid var(--purple); }
+        html[dir="rtl"] .warning-box { border-left: none; border-right: 4px solid #F59E0B; }
+        html[dir="rtl"] .critical-box { border-left: none; border-right: 4px solid #EF4444; }
+        html[dir="rtl"] ul { margin-left: 0; margin-right: 22px; }
+        html[dir="rtl"] .step-list li { padding: 20px 60px 20px 20px; }
+        html[dir="rtl"] .step-list li::before { left: auto; right: 16px; }
+        html[dir="rtl"] .footer-col h4 { letter-spacing: 0; }
+        html[dir="rtl"] .footer-bottom a { margin-left: 0; margin-right: 20px; }
+
         @media (max-width: 768px) {
             .nav-links { display: none; }
             .hamburger { display: flex; }
@@ -202,35 +238,40 @@
         <span>Weino</span>
     </a>
     <ul class="nav-links">
-        <li><a href="index.html#features">Features</a></li>
-        <li><a href="index.html#how-it-works">How It Works</a></li>
-        <li><a href="index.html#match-types">Match Types</a></li>
-        <li><a href="support.html">Support</a></li>
-        <li><a href="index.html#download" class="nav-cta">Download App</a></li>
+        <li><a href="index.html#features" data-i18n="navFeatures">Features</a></li>
+        <li><a href="index.html#how-it-works" data-i18n="navHowItWorks">How It Works</a></li>
+        <li><a href="support.html" data-i18n="navSupport">Support</a></li>
+        <li><a href="index.html#download" class="nav-cta" data-i18n="navDownload">Download App</a></li>
     </ul>
-    <div class="hamburger" onclick="toggleMenu()" aria-label="Menu">
-        <span></span><span></span><span></span>
+    <div class="nav-right">
+        <button class="lang-btn" id="langBtn" onclick="toggleLang()">
+            <span class="lang-icon">🌐</span>
+            <span id="langBtnText">عربي</span>
+        </button>
+        <div class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </div>
     </div>
 </nav>
 <div class="mobile-menu" id="mobileMenu">
-    <a href="index.html#features" onclick="toggleMenu()">Features</a>
-    <a href="index.html#how-it-works" onclick="toggleMenu()">How It Works</a>
-    <a href="index.html#match-types" onclick="toggleMenu()">Match Types</a>
-    <a href="support.html" onclick="toggleMenu()">Support</a>
-    <a href="index.html#download" class="nav-cta" onclick="toggleMenu()">Download App</a>
+    <a href="index.html#features" onclick="toggleMenu()" data-i18n="navFeatures">Features</a>
+    <a href="index.html#how-it-works" onclick="toggleMenu()" data-i18n="navHowItWorks">How It Works</a>
+    <a href="support.html" onclick="toggleMenu()" data-i18n="navSupport">Support</a>
+    <a href="index.html#download" class="nav-cta" onclick="toggleMenu()" data-i18n="navDownload">Download App</a>
+    <a href="#" onclick="toggleLang(); toggleMenu(); return false;" id="mobLangLink" style="color: var(--purple); font-weight: 600;">عربي</a>
 </div>
 
 
 <section class="page-hero">
     <div class="page-hero-inner">
         <img src="applogo.png" alt="Weino Logo">
-        <h1>Child Safety Standards</h1>
-        <p>Our commitment to keeping children safe</p>
-        <a href="index.html">← Back to Home</a>
+        <h1 data-i18n="pageTitle">Child Safety Standards</h1>
+        <p data-i18n="pageSubtitle">Our commitment to keeping children safe</p>
+        <a href="index.html" class="back-home-btn" data-i18n="backHome">← Back to Home</a>
     </div>
 </section>
 
-<div class="page-content">
+<div class="page-content" id="contentEn">
 
 <div class="critical">
             <strong>Our Commitment to Child Safety</strong><br>
@@ -343,6 +384,112 @@
     
 </div>
 
+<div class="page-content" id="contentAr" style="display:none;">
+
+<div class="critical-box">
+    <strong>التزامنا بسلامة الأطفال</strong><br>
+    تتبنى Weino سياسة عدم التسامح المطلق تجاه الإساءة الجنسية للأطفال واستغلالهم (CSAE). نحن ملتزمون بتوفير بيئة آمنة لجميع المستخدمين ونتخذ إجراءات فورية ضد أي محتوى أو سلوك يهدد سلامة القاصرين.
+</div>
+
+<h2>1. قيود العمر والتحقق منه</h2>
+<p>صُمِّمت Weino للمستخدمين الذين تبلغ أعمارهم 13 عاماً فأكثر. نطبّق الإجراءات التالية:</p>
+<ul>
+    <li><strong>شرط العمر:</strong> يجب أن يكون المستخدم في سن 13 عاماً على الأقل لإنشاء حساب، امتثالاً لقانون COPPA (قانون حماية خصوصية الأطفال عبر الإنترنت).</li>
+    <li><strong>إنشاء الحساب:</strong> خلال التسجيل، يجب على المستخدمين تأكيد استيفائهم لشرط الحد الأدنى للعمر.</li>
+    <li><strong>الإبلاغ عن المستخدمين دون السن القانونية:</strong> نشجع المستخدمين على الإبلاغ عن أي حساب يشتبهون في أنه يعود لشخص دون 13 عاماً.</li>
+    <li><strong>الإجراء الفوري:</strong> أي حساب يُثبت أنه يعود لمستخدم دون 13 عاماً سيُعلَّق ويُحذف فوراً.</li>
+</ul>
+
+<h2>2. منع مواد الاستغلال الجنسي للأطفال (CSAM)</h2>
+<p>تعمل Weino بنشاط على منع إنشاء أو توزيع أو مشاركة مواد CSAM من خلال:</p>
+<ul>
+    <li><strong>إشراف المحتوى:</strong> أنظمة آلية ومراجعة يدوية لاكتشاف المحتوى غير اللائق وإزالته.</li>
+    <li><strong>الإبلاغ من قِبل المستخدمين:</strong> آليات إبلاغ داخل التطبيق تتيح للمستخدمين الإبلاغ عن المحتوى أو السلوك المثير للقلق فوراً.</li>
+    <li><strong>المراقبة الاستباقية:</strong> مراقبة مستمرة للمحتوى الذي ينشئه المستخدمون، بما يشمل صور الملف الشخصي والرسائل والوسائط المشتركة.</li>
+    <li><strong>سياسة عدم التسامح المطلق:</strong> حظر فوري ودائم لأي مستخدم يُثبت قيامه بمشاركة أو إنشاء أو توزيع مواد CSAM.</li>
+    <li><strong>الحلول التقنية:</strong> استخدام أدوات وتقنيات متوافقة مع معايير الصناعة لاكتشاف ومنع رفع المحتوى الضار.</li>
+</ul>
+
+<h2>3. آليات الإبلاغ</h2>
+<p>توفر Weino طرقاً متعددة للإبلاغ عن مخاوف سلامة الأطفال:</p>
+<ul>
+    <li><strong>الإبلاغ داخل التطبيق:</strong> يمكن للمستخدمين الإبلاغ عن المحتوى أو السلوك أو الحسابات المثيرة للقلق مباشرةً من خلال ميزة الإبلاغ في التطبيق.</li>
+    <li><strong>الإبلاغ عبر البريد الإلكتروني:</strong> إبلاغ مباشر لفريق السلامة لدينا (انظر معلومات الاتصال أدناه).</li>
+    <li><strong>الأولوية في المعالجة:</strong> تُعالَج جميع بلاغات سلامة الأطفال بأعلى أولوية وعلى وجه السرعة.</li>
+    <li><strong>السرية:</strong> تُعالَج البلاغات بسرية تامة لحماية سلامة جميع الأطراف المعنية.</li>
+</ul>
+
+<h2>4. إجراءات الاستجابة والتصرف</h2>
+<p>عند ورود بلاغ يتعلق بسلامة طفل، تتخذ Weino إجراءات فورية:</p>
+<ul>
+    <li><strong>مراجعة فورية:</strong> تُراجَع جميع بلاغات سلامة الأطفال خلال 24 ساعة، والحالات الحرجة فوراً.</li>
+    <li><strong>تعليق الحساب:</strong> تُعلَّق الحسابات الخاضعة للتحقيق في انتهاكات سلامة الأطفال فوراً حتى انتهاء المراجعة.</li>
+    <li><strong>إزالة المحتوى:</strong> أي محتوى يُحدَّد باعتباره مادة CSAM أو ضاراً بالقاصرين يُزال من منصتنا فوراً.</li>
+    <li><strong>التعاون مع جهات إنفاذ القانون:</strong> نتعاون بشكل كامل مع جهات إنفاذ القانون ونبلّغ عن حالات CSAM المشتبه بها للجهات المختصة.</li>
+    <li><strong>الحظر الدائم:</strong> يُحظر نهائياً من المنصة أي مستخدم يُثبت انتهاكه لمعايير سلامة الأطفال.</li>
+</ul>
+
+<h2>5. الامتثال القانوني</h2>
+<p>تلتزم Weino بجميع قوانين ولوائح سلامة الأطفال ذات الصلة، بما فيها:</p>
+<ul>
+    <li><strong>COPPA:</strong> الامتثال للقانون الفيدرالي الأمريكي لحماية خصوصية الأطفال عبر الإنترنت.</li>
+    <li><strong>القوانين الإقليمية:</strong> الامتثال لقوانين حماية الطفل في جميع الولايات القضائية التي تعمل فيها Weino.</li>
+    <li><strong>المعايير الدولية:</strong> الالتزام بأفضل الممارسات الدولية لسلامة الأطفال عبر الإنترنت.</li>
+    <li><strong>الإبلاغ الإلزامي:</strong> نُبلّغ عن حالات CSAM المشتبه بها للسلطات الإقليمية والوطنية المعنية وفقاً للقانون.</li>
+</ul>
+
+<h2>6. التوعية وتثقيف المستخدمين</h2>
+<p>تعزز Weino الوعي بسلامة الأطفال من خلال:</p>
+<ul>
+    <li><strong>إرشادات السلامة:</strong> إرشادات واضحة تُقدَّم لجميع المستخدمين خلال إنشاء الحساب وداخل التطبيق.</li>
+    <li><strong>معايير المجتمع:</strong> معايير مجتمعية منشورة تحظر صراحةً أي سلوك ضار بالقاصرين.</li>
+    <li><strong>الموارد التعليمية:</strong> روابط لموارد تعليمية حول السلامة عبر الإنترنت للمستخدمين وأولياء الأمور.</li>
+    <li><strong>التحديثات المنتظمة:</strong> تواصل مستمر حول ميزات السلامة وآليات الإبلاغ.</li>
+</ul>
+
+<h2>7. البنية التحتية التقنية للسلامة</h2>
+<p>تستثمر Weino في التقنية والبنية التحتية لحماية سلامة الأطفال:</p>
+<ul>
+    <li><strong>الكشف الآلي:</strong> أنظمة آلية متقدمة لاكتشاف المحتوى الضار المحتمل والإبلاغ عنه.</li>
+    <li><strong>الإشراف البشري:</strong> مشرفون بشريون مدرَّبون يراجعون المحتوى المُبلَّغ عنه وسلوك المستخدمين.</li>
+    <li><strong>الاحتفاظ بالبيانات:</strong> سياسات احتفاظ مناسبة تحفظ الأدلة لجهات إنفاذ القانون مع حماية خصوصية المستخدم.</li>
+    <li><strong>التخزين الآمن:</strong> تخزين آمن للمحتوى المُبلَّغ عنه والأدلة وفقاً للمتطلبات القانونية.</li>
+</ul>
+
+<h2>8. معلومات التواصل</h2>
+<p><strong>جهة الاتصال المخصصة لسلامة الأطفال</strong></p>
+<p>للأسئلة أو المخاوف أو البلاغات المتعلقة بسلامة الأطفال، يرجى التواصل:</p>
+<p>
+    <strong>البريد الإلكتروني:</strong> <a href="mailto:amarhaikal208@gmail.com">amarhaikal208@gmail.com</a><br>
+    <strong>سطر الموضوع:</strong> "Child Safety Report - Weino"
+</p>
+<p><strong>هذه الجهة مستعدة وقادرة على مناقشة ممارسات Weino في منع CSAM والامتثال.</strong></p>
+<p>للاستفسارات العامة، يرجى زيارة <a href="support.html">صفحة الدعم</a>.</p>
+
+<h2>9. التحسين المستمر</h2>
+<p>تلتزم Weino بالتحسين المستمر لإجراءات سلامة الأطفال لديها:</p>
+<ul>
+    <li><strong>مراجعة دورية:</strong> نراجع ونحدّث سياسات وإجراءات سلامة الأطفال بانتظام.</li>
+    <li><strong>التعاون مع الصناعة:</strong> نتعاون مع شركاء الصناعة ومنظمات السلامة وجهات إنفاذ القانون للبقاء على اطلاع بأفضل الممارسات.</li>
+    <li><strong>تحديثات تقنية:</strong> نحدّث باستمرار تقنياتنا وأدواتنا لتحسين الكشف عن انتهاكات سلامة الأطفال ومنعها.</li>
+    <li><strong>ملاحظات المستخدمين:</strong> نرحب بملاحظات المستخدمين وأولياء الأمور ومنظمات السلامة لتحسين إجراءاتنا.</li>
+</ul>
+
+<div class="highlight">
+    <strong>تذكير مهم</strong><br>
+    إذا واجهت محتوى أو سلوكاً تعتقد أنه قد يتعلق بالإساءة الجنسية للأطفال أو استغلالهم، يرجى الإبلاغ عنه فوراً عبر ميزة الإبلاغ في التطبيق أو بإرسال بريد إلكتروني إلى <a href="mailto:amarhaikal208@gmail.com">amarhaikal208@gmail.com</a>. في حالات الطوارئ، يرجى أيضاً التواصل مع سلطات إنفاذ القانون المحلية.
+</div>
+
+<h2>10. موارد مفيدة</h2>
+<p>للمزيد من المعلومات حول سلامة الأطفال عبر الإنترنت، يرجى زيارة:</p>
+<ul>
+    <li><a href="https://www.missingkids.org/" target="_blank" rel="noopener noreferrer">المركز الوطني للأطفال المفقودين والمستغَلّين (NCMEC)</a></li>
+    <li><a href="https://www.fbi.gov/investigate/violent-crime/cac" target="_blank" rel="noopener noreferrer">مكتب التحقيقات الفيدرالي - الجرائم ضد الأطفال</a></li>
+    <li><a href="https://www.inhope.org/" target="_blank" rel="noopener noreferrer">INHOPE - الرابطة الدولية لخطوط الساخنة عبر الإنترنت</a></li>
+</ul>
+
+</div>
+
 <footer>
     <div class="footer-inner">
         <div class="footer-top">
@@ -379,9 +526,40 @@
     </div>
 </footer>
 <script>
-function toggleMenu() {
-    document.getElementById('mobileMenu').classList.toggle('open');
+let currentLang = localStorage.getItem('weino_lang') || 'en';
+const translations = {
+    navFeatures:   { en: 'Features',       ar: 'الميزات' },
+    navHowItWorks: { en: 'How It Works',   ar: 'كيف يعمل' },
+    navSupport:    { en: 'Support',        ar: 'الدعم' },
+    navDownload:   { en: 'Download App',   ar: 'تحميل التطبيق' },
+    backHome:      { en: '← Back to Home', ar: '→ العودة للرئيسية' },
+    pageTitle:     { en: 'Child Safety Standards', ar: 'معايير سلامة الأطفال' },
+    pageSubtitle:  { en: 'Our commitment to keeping children safe', ar: 'التزامنا بحماية الأطفال' },
+};
+
+function setLang(lang) {
+    currentLang = lang;
+    localStorage.setItem('weino_lang', lang);
+    document.documentElement.lang = lang;
+    document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+    document.body.style.fontFamily = lang === 'ar'
+        ? "'Cairo', 'Segoe UI', sans-serif"
+        : "'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif";
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.dataset.i18n;
+        if (translations[key]?.[lang] !== undefined) el.textContent = translations[key][lang];
+    });
+    const btn = document.getElementById('langBtnText');
+    if (btn) btn.textContent = lang === 'ar' ? 'English' : 'عربي';
+    const mob = document.getElementById('mobLangLink');
+    if (mob) mob.textContent = lang === 'ar' ? 'English' : 'عربي';
+    const enBlock = document.getElementById('contentEn');
+    const arBlock = document.getElementById('contentAr');
+    if (enBlock) enBlock.style.display = lang === 'ar' ? 'none' : 'block';
+    if (arBlock) arBlock.style.display = lang === 'ar' ? 'block' : 'none';
 }
+function toggleLang() { setLang(currentLang === 'en' ? 'ar' : 'en'); }
+function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
 document.addEventListener('click', function(e) {
     const menu = document.getElementById('mobileMenu');
     const hb = document.querySelector('.hamburger');
@@ -389,6 +567,7 @@ document.addEventListener('click', function(e) {
         menu.classList.remove('open');
     }
 });
+setLang(currentLang);
 </script>
 
 </body>
